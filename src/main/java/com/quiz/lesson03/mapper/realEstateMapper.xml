@@ -35,21 +35,23 @@
 			`rentPrice` &lt; #{rentPrice}		
 	</select>
 	<select id="selectRealEstateListByAreaAndPrice" parameterType ="map" resultType="com.quiz.lesson03.domain.RealEstate">
-		SELECT
-			`id`,
-			`realtorId`,
-			`address`,
-			`area`,
-			`type`,
-			`price`,
-			`rentPrice`,
-			`createdAt`,
-			`updatedAt`
-		FROM
-			`real_estate`
-		Where
-			`area` &gt; #{area}
-		AND	
-			`price` &lt; #{price}		
+		<![CDATA[	
+			 SELECT
+				`id`,
+				`realtorId`,
+				`address`,
+				`area`,
+				`type`,
+				`price`,
+				`rentPrice`,
+				`createdAt`,
+				`updatedAt`
+			FROM
+				`real_estate`
+			Where
+				`area` > #{area}
+			AND	
+				`price` < #{price}
+		]]>
 	</select>
 </mapper>
