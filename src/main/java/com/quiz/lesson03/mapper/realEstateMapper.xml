@@ -34,7 +34,7 @@
 		Where
 			`rentPrice` &lt; #{rentPrice}		
 	</select>
-	<!--  <select id="selectRealEstateAreaPrice" parameterType ="map" >
+	<select id="selectRealEstateListByAreaAndPrice" parameterType ="map" resultType="com.quiz.lesson03.domain.RealEstate">
 		SELECT
 			`id`,
 			`realtorId`,
@@ -48,8 +48,8 @@
 		FROM
 			`real_estate`
 		Where
-			`area` &gt; #{area, jdbcType=INT}
+			`area` &gt; #{area}
 		AND	
-			`price` &lt; #{price, jdbcType=INT}		
-	</select> -->
+			`price` &lt; #{price}		
+	</select>
 </mapper>
