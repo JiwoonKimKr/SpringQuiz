@@ -28,6 +28,7 @@ public class Lesson03Quiz01RestController {
 	}
 	
 	@GetMapping("/3")
+	//http://localhost/lesson03/quiz01/3?area=50&price=100000
 	public List<RealEstate> getRealEstateListByAreaAndPrice(
 			@RequestParam("area") int area, @RequestParam("price") int price){
 		return realEstateBO.getRealEstateListByAreaAndPrice(area, price);
