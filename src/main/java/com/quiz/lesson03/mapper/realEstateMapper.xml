@@ -80,8 +80,8 @@
 				, NOW()
 			)	
 	</insert>
-	<insert id="insertRealEstateAsField" parameterType="com.quiz.lesson03.domain.RealEstate">
-		INSERT Into `Real_Estate`
+	<insert id="insertRealEstateAsField" parameterType="map">
+		INSERT INTO `Real_Estate`
 			(
 				`realtorId`,
 				`address`,
@@ -103,5 +103,18 @@
 				, NOW()
 				, NOW()
 			)	
-	</insert>	
+	</insert>
+	<update id="updateRealEstateById" parameterType="com.quiz.lesson03.domain.RealEstate">
+		UPDATE `Real_Estate`
+		SET
+			`address` = #{address}
+			,`area` = #{area}
+			,`type` = #{type}
+			,`price` = #{price}
+			,`rentPrice` = #{rentPrice}
+			,`createdAt` = NOW()
+			,`updatedAt` = NOW()
+		WHERE `id` = #{realtorId}
+
+	</update>	
 </mapper>
