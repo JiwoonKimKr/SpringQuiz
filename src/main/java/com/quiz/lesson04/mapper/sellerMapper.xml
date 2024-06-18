@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.quiz.lesson04.mapper.SellerMapper">
+	<insert id="insertSeller" parameterType="com.quiz.lesson04.domain.SellerDTO">
+		INSERT INTO `seller`
+		(
+			`id`
+			,`nickname`
+			,`profileImageUrl`
+			,`temperature`
+			,`createdAt`
+			,`updatedAt`
+		)
+		VALUE		
+		(
+			#{id}
+			, #{nickname}
+			, #{profileImageUrl}
+			, #{temperature}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	<select id="selectSellerAddedLatest" resultType="com.quiz.lesson04.domain.SellerDTO">
+		SELECT
+			`id`
+			,`nickname`
+			,`profileImageUrl`
+			,`temperature`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`seller`
+		ORDER BY `id` DESC
+		LIMIT 1;	
+	</select>
+</mapper>
