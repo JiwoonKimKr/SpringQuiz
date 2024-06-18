@@ -113,9 +113,14 @@
 			,`type` = #{type}
 			,`price` = #{price}
 			,`rentPrice` = #{rentPrice}
-			,`createdAt` = NOW()
 			,`updatedAt` = NOW()
 		WHERE `id` = #{realtorId}
-
-	</update>	
+	</update>
+	<delete id="deleteRealEstateById" parameterType="int">
+		DELETE
+		FROM
+			`Real_Estate`
+		WHERE
+			`id` = #{id}
+	</delete>
 </mapper>

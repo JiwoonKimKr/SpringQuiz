@@ -34,5 +34,7 @@ public interface RealEstateMapper {
 				,@Param("lentPrice") int lentPrice
 			);
 
-	public int updateRealEstateById(RealEstate realEstate);	
+	public int updateRealEstateById(RealEstate realEstate);
+
+	public int deleteRealEstateById(int id);	
 }
