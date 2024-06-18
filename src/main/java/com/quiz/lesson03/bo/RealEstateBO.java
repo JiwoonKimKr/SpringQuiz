@@ -41,10 +41,12 @@ public class RealEstateBO {
 		return realEstateMapper.insertRealEstateAsField(realtorId,address,area,type,price,lentPrice);
 	}
 	
-	public int updateRealEstateById(int id, String type, int price) {
-		RealEstate realEstate = realEstateMapper.selectRealEstateBy(id);
-		realEstate.setType(type);
-		realEstate.setPrice(price);
-		return realEstateMapper.updateRealEstateById(realEstate);
+	public int updateRealEstateById(int id, Integer realtorId, String address, Integer area, String type, Integer price, Integer rentPrice) {
+		RealEstate target = realEstateMapper.selectRealEstateBy(id);
+		if(target == null) return -1;
+		
+		RealEstate updated = target.updateRealEstate(target, realtorId, address, area, type, price, rentPrice);
+	
+		return realEstateMapper.updateRealEstateById(updated);
 	}
 }

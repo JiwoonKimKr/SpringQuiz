@@ -14,9 +14,15 @@ public class Lesson03Quiz03RestController {
 	
 	@RequestMapping("/lesson03/quiz03")
 	public String updateRealEstateById(
-					@RequestParam("id")int id
-					,@RequestParam("type")String type
-					,@RequestParam("price")int price){
-		return "수정 성공: " + realEstateBO.updateRealEstateById(id, type, price);
+					@RequestParam(name = "id", required = true ) int id
+					,@RequestParam(name = "realtorId", required = false) Integer realtorId
+					,@RequestParam(name = "address", required = false) String address
+					,@RequestParam(name = "area", required = false) Integer area
+					,@RequestParam(name = "type", required = false) String type
+					,@RequestParam(name = "price", required = false) Integer price
+					,@RequestParam(name = "rentPrice", required = false) Integer rentPrice){
+		int countUpdated = realEstateBO.updateRealEstateById(id, realtorId, address, area , type, price ,rentPrice);
+		
+		return countUpdated == -1 ? "DB 수정 실패" : "수정 성공: " + countUpdated;
 	}
 }

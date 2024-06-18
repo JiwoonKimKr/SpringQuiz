@@ -13,6 +13,14 @@ public class RealEstate {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
+	
+	@Override
+	public String toString() {
+		return "RealEstate [id=" + id + ", realtorId=" + realtorId + ", address=" + address + ", area=" + area
+				+ ", type=" + type + ", price=" + price + ", rentPrice=" + rentPrice + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + "]";
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -70,4 +78,23 @@ public class RealEstate {
 	public void setRentPrice(Integer rentPrice) {
 		this.rentPrice = rentPrice;
 	}
+
+	public RealEstate updateRealEstate(
+			RealEstate target
+			, Integer realtorId
+			, String address
+			, Integer area
+			, String type
+			, Integer price
+			, Integer rentPrice2) {
+		
+		if(realtorId != null) target.setRealtorId((int) realtorId);
+		if(address != null) target.setAddress(address);
+		if(area != null) target.setArea((int)area);
+		if(type != null) target.setType(type);
+		if(price != null) target.setPrice((int)price);
+		if(rentPrice != null) target.setPrice((int)rentPrice);		
+		return target;
+	}
+
 }

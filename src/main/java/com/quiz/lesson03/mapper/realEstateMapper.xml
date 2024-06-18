@@ -107,7 +107,8 @@
 	<update id="updateRealEstateById" parameterType="com.quiz.lesson03.domain.RealEstate">
 		UPDATE `Real_Estate`
 		SET
-			`address` = #{address}
+			realtorId = #{realtorId}
+			,`address` = #{address}
 			,`area` = #{area}
 			,`type` = #{type}
 			,`price` = #{price}
