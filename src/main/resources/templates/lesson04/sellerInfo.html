@@ -17,16 +17,21 @@
 		<section class="contents">
 			<section class="pageForSell">
 				<div>
-					<p class="h3">판매자 정보</p>
+					<p class="h3 mt-4">판매자 정보</p>
 				</div>
 				<div class="mt-4 d-flex flex-wrap mx-auto">
 					<article class="articleForSell rounded-lg">
 						<div class="m-1 row-8 w-100">
-							<img src="" th:src="${seller.profileImageUrl}"  width="212" height="120">
+							<div th:if="${seller.profileImageUrl} != ''">
+								<img th:src="${seller.profileImageUrl}" width="212" height="120">
+							</div>
+							<div th:if="${seller.profileImageUrl} == ''">
+								<img src="/image_default.png" width="212" height="120">
+							</div>
 						</div>
 						<div class="row-4 w-100 mt-2 ml-3 d-flex flex-column justify-content-around">
-							<p class="h6 font-weight-bolder mb-sm-1 w-100" th:text="${seller.nickname}">되팔이</p>
-							<p class="text-secondary mb-sm-1 w-100" th:text="${seller.temperature}">36.5</p>
+							<p class="nicknameSeller text-secondary my-0 w-100" th:text="${seller.nickname}">되팔이</p>
+							<p class="temperatureSeller mt-0 w-100" th:text="${seller.temperature}">36.5</p>
 						</div>
 					</article>
 				</div>

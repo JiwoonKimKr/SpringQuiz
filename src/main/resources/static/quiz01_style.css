@@ -8,3 +8,12 @@
 	width: 222px;
 	height:	222px;
 }
+
+.nicknameSeller{
+	font-size: 200%;
+}
+
+.temperatureSeller{
+	font-size: 150%;
+	color: orange;
+}
