@@ -5,8 +5,7 @@
 	<insert id="insertSeller" parameterType="com.quiz.lesson04.domain.SellerDTO">
 		INSERT INTO `seller`
 		(
-			`id`
-			,`nickname`
+			`nickname`
 			,`profileImageUrl`
 			,`temperature`
 			,`createdAt`
@@ -14,8 +13,7 @@
 		)
 		VALUE		
 		(
-			#{id}
-			, #{nickname}
+			#{nickname}
 			, #{profileImageUrl}
 			, #{temperature}
 			, NOW()
@@ -34,5 +32,18 @@
 			`seller`
 		ORDER BY `id` DESC
 		LIMIT 1;	
+	</select>
+	<select id="selectSellerById" parameterType="int" resultType="com.quiz.lesson04.domain.SellerDTO">
+		SELECT
+			`id`
+			,`nickname`
+			,`profileImageUrl`
+			,`temperature`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`seller`
+		WHERE
+			`id` =  #{id}
 	</select>
 </mapper>

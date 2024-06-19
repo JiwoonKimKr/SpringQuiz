@@ -6,7 +6,7 @@ public class SellerDTO {
 	private int id;
 	private String nickname;
 	private String profileImageUrl;
-	private Double temperature;
+	private double temperature; //DB에 null값이 못 들어가는 탓에 굳이 wrapper 클래스 안 써도 된다!;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	

@@ -11,4 +11,6 @@ public interface SellerMapper {
 
 	SellerDTO selectSellerAddedLatest();
 
+	SellerDTO selectSellerById(int id);
+
 }

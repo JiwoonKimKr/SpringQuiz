@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>판매자 입력</title>
+	<title th:text="${title}">title</title>
 	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 	<!-- bootstrap -->
@@ -15,18 +15,18 @@
 		<header>
 		</header>
 		<section class="contents">
-			<section class="pageForSell">
+			<section class="articlesForSell">
 				<div>
 					<p class="h3 mt-4">판매자 정보</p>
 				</div>
-				<div class="mt-4 d-flex flex-wrap mx-auto">
-					<article class="articleForSell rounded-lg">
+				<div class="pageForSell mt-4 d-flex flex-wrap mx-auto">
+					<article class="articleForSell border rounded-lg">
 						<div class="m-1 row-8 w-100">
 							<div th:if="${seller.profileImageUrl} != ''">
-								<img th:src="${seller.profileImageUrl}" width="212" height="120">
+								<img th:src="${seller.profileImageUrl}" width="212" height="120" alt="profile image">
 							</div>
 							<div th:if="${seller.profileImageUrl} == ''">
-								<img src="/image_default.png" width="212" height="120">
+								<img src="/image_default.png" width="212" height="120" alt="profile image">
 							</div>
 						</div>
 						<div class="row-4 w-100 mt-2 ml-3 d-flex flex-column justify-content-around">
