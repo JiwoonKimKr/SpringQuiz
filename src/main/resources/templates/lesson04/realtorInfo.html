@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${title}">title</title>
+	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="wrap" class="container">
+		<header>
+		</header>
+		<section class="contents">
+			<section class="">
+				<div>
+					<p class="h3 mt-4 text-center" th:text="${title}">정보</p>
+				</div>
+				<div class="">
+					<article class="">
+						<table class="table table-striped text-center">
+							<tr>
+								<th>ID</th>
+								<td th:text="${realtor.id}">-1</td>
+							</tr>
+							<tr>
+								<th>상호명</th>
+								<td th:text="${realtor.office}">도전무한중개사</td>
+							</tr>
+							<tr>
+								<th>전화번호</th>
+								<td th:text="${realtor.phoneNumber}">01011112222</td>
+							</tr>
+							<tr>
+								<th>주소</th>
+								<td th:text="${realtor.address}">충남 서천군 두북리 63-1번</td>
+							</tr>
+							<tr>
+								<th>등급</th>
+								<td th:text="${realtor.grade}">스핑크스</td>
+							</tr>
+						<!--  
+							<tr>
+								<th>가입일</th>
+								<td th:text="${realtor.createdAt}"></td>
+							</tr>
+							<tr>
+								<th>수정일</th>
+								<td th:text="${realtor.updatedAt}"></td>
+							</tr>
+						-->
+						</table>
+					</article>
+				</div>
+			</section>				
+		</section>
+		<footer>
+		</footer>
+	</div>
+</body>
+</html>
