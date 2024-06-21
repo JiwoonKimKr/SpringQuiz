@@ -16,9 +16,9 @@
 			List<String> musicRanking
 			,List<Map<String, Object>> membership -->
 		<section class="contents">
-			<article class="tableMusicRanking">
+			<article class="tableMusicRanking w-50 mx-auto">
 				<h3>HOT5</h3>
-				<table class="table table-striped table-hover">
+				<table class="table table-striped table-hover text-center">
 					<thead class="table">
 						<tr>
 							<th>순위</th>
@@ -34,23 +34,29 @@
 				</table>
 			</article>
 			
-			<article class="tableMembership mt-4">
+			<article class="tableMembership mt-4 w-75 mx-auto">
 				<h3>멤버쉽</h3>
 				<table class="table table-striped table-hover text-center">
 					<thead>
 						<tr>
-							<th>이름</th>
-							<th>전화번호</th>
-							<th>등급</th>
-							<th>포인트</th>
+							<th class="col-3">이름</th>
+							<th class="col-3">전화번호</th>
+							<th class="col-3">등급</th>
+							<th class="col-3">포인트</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="member : ${membership}">
+							
+
 							<td th:text="${member.name}"></td>
 							<td th:text="${member.phoneNumber}"></td>
-							<td th:text="${member.grade}"></td>
-							<td th:text="${member.point} + P" th:classappend="${member.point >= 5000}? 'text-primary font-weight-bold'"></td>
+							<div th:switch="${member.grade}">
+								<p th:case="'VIP'"> <td th:text="${member.grade}" th:classappend="'text-danger font-weight-bold'"></td> <p>
+								<p th:case="'GOLD'"> <td th:text="${member.grade}" th:classappend="'text-warning font-weight-bold'"></td> <p>
+								<p th:case="*"> <td th:text="${member.grade}" th:classappend="'text-dark'"></td> <p>
+							</div>							
+							<td th:text="${member.point} + P" th:classappend="${member.point >= 5000} ?'text-primary font-weight-bold'"></td>
 						</tr>
 					</tbody>
 				</table>
