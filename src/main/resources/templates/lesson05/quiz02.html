@@ -47,8 +47,6 @@
 					</thead>
 					<tbody>
 						<tr th:each="member : ${membership}">
-							
-
 							<td th:text="${member.name}"></td>
 							<td th:text="${member.phoneNumber}"></td>
 							<div th:switch="${member.grade}">

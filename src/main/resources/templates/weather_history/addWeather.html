@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>addWeather</title>
+    <!-- jQuerry랑 bootStrap 관련 파일들 static에 저장되있어야 -->
+	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script src="/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/jquery-ui.css">
+
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="/weather_history/style_weather.css" type="text/css">
+</head>
+<body>
+	<div id="wrap">
+		<header>
+		</header>
+		<section class="contents d-flex pt-3" >
+			<aside th:replace="~{/weather_history/weatherList :: navAsideWeatherList}" class="p-auto bg-info col-2">
+			</aside>
+			<article class="container">
+				<div class="display-4 mt-3">날씨 입력</div>
+<!-- 	
+	private int id;
+	private LocalDate date;
+	private String weather;
+	private double temperatures;
+	private double precipitation;
+	private String microDust;
+	private double windSpeed;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
+-->				
+				<div class="mt-4">
+					<form method="post" action="/weather-history/add-weather">
+						<div class="d-flex justify-content-around align-content-center">
+							<div class="form-group d-flex col-4">
+								<label for="datepicker" class="col-3 my-auto pr-0">날짜</label>
+								<input type="text" id="datepicker" class="form-control my-auto" name="date">
+							</div>
+							<div class="form-group d-flex col-4">
+								<label for="weather" class="col-3 my-auto pr-0" >날씨</label>
+								<select class="form-control my-auto" id="weather" name="weather">
+									<option value="맑음">맑음</option>
+									<option value="구름조금">구름조금</option>
+									<option value="흐림">흐림</option>
+									<option value="비">비</option>
+								</select>
+							</div>
+							<div class="form-group d-flex col-4">
+								<label for="microDust" class="col-5 my-auto pr-0 ">미세먼지</label>
+								<select class="form-control" id="microDust" name="microDust">
+									<option value="좋음">좋음</option>
+									<option value="보통">보통</option>
+									<option value="나쁨">나쁨</option>
+									<option value="최악">최악</option>
+								</select>
+							</div>
+						</div>
+						<div class="d-flex justify-content-around align-content-center">
+							<div class="input-group col-4">
+								<label for="temperatures" class="col-3 my-auto pr-0">기온</label>
+								<input type="text" class="form-control" id="temperatures" name="temperatures">
+								<div class="input-group-append">
+									<span class="input-group-text">℃</span>
+								</div>
+							</div>						
+							<div class="input-group col-4">
+								<label for="precipitation" class="col-3 my-auto pr-0">강수량</label>
+								<input type="text" class="form-control" id="precipitation" name="precipitation">
+								<div class="input-group-append">
+									<span class="input-group-text">mm</span>
+								</div>
+							</div>						
+							<div class="input-group col-4">
+								<label for="windSpeed" class="col-3 my-auto pr-0">풍속</label>
+								<input type="text" class="form-control" id="windSpeed" name="windSpeed">
+								<div class="input-group-append">
+									<span class="input-group-text">km/h</span>
+								</div>
+							</div>						
+						</div>
+						<div class="d-flex justify-content-end mt-3">
+							<button type="submit" class="btn btn-success">저장</button>
+						</div>
+					</form>
+				</div>
+			</article>
+		</section>
+	</div>
+	<script>
+		$(document).ready(function(){
+			let date = '';
+			$("#datepicker").datepicker({
+				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
+				,monthNames: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
+                ,dateFormat:"yy-mm-dd"
+                ,changeMonth:true
+                ,changeYear:true
+                ,onSelect:function(dateText){
+                	date = $(this).val();
+                }
+            });
+		})
+	</script>
+</body>
+</html>

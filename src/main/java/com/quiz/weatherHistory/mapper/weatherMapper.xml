@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quiz.weatherHistory.mapper.WeatherMapper">
+	<select id="selectListWeatherHistory" resultType="com.quiz.weatherHistory.domain.WeatherHistory">
+		SELECT
+			`id`
+			,`date`
+			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`weather_history`
+	</select>
+	<insert id="insertWeatherHistory" parameterType="com.quiz.weatherHistory.domain.WeatherHistory">
+		INSERT INTO `weather_history`
+		(
+			`date`
+			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+			,`createdAt`
+			,`updatedAt`		
+		)
+		VALUE
+		(
+			 #{date}
+			, #{weather}
+			, #{temperatures}
+			, #{precipitation}
+			, #{microDust}
+			, #{windSpeed}
+			, NOW()
+			, NOW()		
+		)
+	</insert>
+</mapper>
