@@ -8,17 +8,26 @@ a, a:hover {
 	color: #000;
 }
 
+#titleLogoAside{
+	font-size:125%
+}
+
 #menuWeather {
 	color: #FFF;
 }
 
 #menuWeather a {
 	color: #FFF;
-	font-size: 150%;
+	font-size: 125%;
 	font-weight: bold;	
 }
 
 #menuWeather a:hover {
 	color: #FFF;
-	background-color: highlight;
+	background-color: skyblue;
+}
+
+#logoFooter {
+	
+	filter: grayscale(100%) ;
 }

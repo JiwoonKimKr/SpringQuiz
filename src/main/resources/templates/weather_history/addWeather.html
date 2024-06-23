@@ -20,21 +20,10 @@
 		<header>
 		</header>
 		<section class="contents d-flex pt-3" >
-			<aside th:replace="~{/weather_history/weatherList :: navAsideWeatherList}" class="p-auto bg-info col-2">
+			<aside th:replace="~{/weather_history/weatherList :: navAsideWeatherList}">
 			</aside>
 			<article class="container">
-				<div class="display-4 mt-3">날씨 입력</div>
-<!-- 	
-	private int id;
-	private LocalDate date;
-	private String weather;
-	private double temperatures;
-	private double precipitation;
-	private String microDust;
-	private double windSpeed;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
--->				
+				<div class="display-4 mt-3">날씨 입력</div>			
 				<div class="mt-4">
 					<form method="post" action="/weather-history/add-weather">
 						<div class="d-flex justify-content-around align-content-center">
@@ -91,6 +80,8 @@
 				</div>
 			</article>
 		</section>
+		<footer th:replace="~{/weather_history/weatherList :: footerWeatherList}">
+		</footer>			
 	</div>
 	<script>
 		$(document).ready(function(){

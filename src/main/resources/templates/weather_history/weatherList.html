@@ -18,7 +18,11 @@
 		<header>
 		</header>
 		<section class="contents d-flex">
-			<aside th:fragment="navAsideWeatherList" class="p-auto bg-info col-2">
+			<aside th:fragment="navAsideWeatherList" class="p-auto bg-info col-3">
+				<div class="d-flex justify-content-center align-items-center py-3">
+					<img src="/weather_history/logo_mark.png" width="25px">
+					<a id="titleLogoAside" class="text-white font-weight-bolder ml-2" href="/weather-history/weather-list-view">기상청</a>
+				</div>				
 				<nav class="">
 					<ul id="menuWeather" class="nav flex-column text-white">
 						<li class="nav-item"><a class="nav-link active" href="/weather-history/weather-list-view">날씨</a></li>
@@ -29,8 +33,8 @@
 					</ul>
 				</nav>
 			</aside>
-			<section class="listWeather container">
-				<p class="display-4 font-weight-bold">과거 날씨</p>
+			<section class="listWeather container pt-3">
+				<p class="h3 font-weight-bold">과거 날씨</p>
 				<table class="table table-hover table-stripped text-center w-100">
 					<thead>
 						<tr>
@@ -60,9 +64,16 @@
 					</tbody>
 				</table>				
 			</section>
-		
 		</section>
-		<footer>
+		<footer th:fragment="footerWeatherList">
+			<address class="d-flex align-items-center mt-4 ml-4">
+				<img id="logoFooter" src="/weather_history/foot_logo_weather.png" width="150px" alt="footer-logo-for-KMA">
+				<div class="ml-4">
+					<small class="text-secondary">
+						(07062) 서울시 동작구 여의대방로16길 61
+						<br> Copyright＠2024 KMA. All Rights RESERVED.</small>
+				</div>
+			</address>
 		</footer>
 	</div>
 </body>
