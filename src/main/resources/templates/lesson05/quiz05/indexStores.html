@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- jQuerry랑 bootStrap 관련 파일들 static에 저장되있어야 -->
+	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/quiz05/quiz05_style.css" type="text/css">
+</head>
+<body>
+	<!-- Model Attributes: List<Store> listStores, <String> titleArticles-->
+	<div id="wrap" class="container">
+		<header>
+			<div id="titleView" class="bg-info d-flex align-items-center">
+				<p class="display-4 text-white my-0 ml-5">배탈의 민족</p>
+			</div>
+		</header>
+		<section class="contents mt-4">
+			<div id="titleArticles" th:text="${titleArticles}" class="display-4 mb-3">
+			</div>			
+			<div th:each=" store : ${listStores}">
+				<article class="articleStore border border-info rounded mb-3">
+						<div class="pl-3 h-100 d-flex flex-column justify-content-center">
+							<a class="textAnchor" th:href="@{/lesson05/quiz05/reviews?storeId={id}&storeName={store}(id=${store.id}, store=${store.store})}">
+								<span th:text="${store.store}" class="text-dark font-weight-bold h4"></span><br>
+								<span th:text="${store.phoneNumber}" class="text-dark h5"></span><br>
+								<span th:text="${store.address}" class="text-dark h5"></span>
+							</a>
+						</div>
+				</article>
+			</div>		
+		</section>
+		<footer>
+			<span class="h5 text-secondary">(주)우와한형제</span>
+			<address class="text-secondary"><small>고객센터:1500-1500</small></address>
+		</footer>
+	</div>
+</body>
+</html>

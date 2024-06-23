@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+#titleView {
+	height: 125px;
+}
+
+.articleStore {
+	height: 125px;
+	border-width: medium;
+}
+
+.userNameReview{
+	font-size: 125%;
+	font-weight: bolder;
+}
+.updatedAtReview{
+	font-size: 75%;
+	color:gray;
+}
+.textReview{
+	margin-top: 3px;
+	font-weight: bold;
+}
+.badgeMenuReview{
+	font-size: 75%;
+	color: #000;
+	background-color: #ccc;
+}
+

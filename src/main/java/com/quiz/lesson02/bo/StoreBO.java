@@ -16,7 +16,7 @@ public class StoreBO {
 	//Input: "Controller가 사실상 아무 것도 보내지 않았다"
 	//Output: List<Store>
 	
-	public List<Store> getListStore() {
+	public List<Store> getListStores() {
 		return storeMapper.selectListStore(); //이 함수에 호출된 return 타입의 value를 return하겠다는 말!
 	}
 

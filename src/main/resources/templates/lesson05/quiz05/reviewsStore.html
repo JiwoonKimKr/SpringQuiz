@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>리뷰</title>
+    <!-- jQuerry랑 bootStrap 관련 파일들 static에 저장되있어야 -->
+	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/quiz05/quiz05_style.css" type="text/css">
+</head>
+<body>
+	<!-- Model Attributes: List<Reviews> listReviews , <String> storeName -->
+	<div id="wrap" class="container">
+		<header>
+			<div id="titleView" class="bg-info d-flex align-items-center">
+				<p class="display-4 text-white my-0 ml-5">배탈의 민족</p>
+			</div>
+		</header>
+		<section class="contents mt-4">
+			<div id="titleArticles" th:text="${storeName} + '-리뷰'" class="display-4 mb-3">
+			</div>			
+			<div th:each=" review : ${listReviews}">
+<!-- 
+	private int id;
+	private int storeId;
+	private String menu;
+	private String userName;
+	private int point;
+	private String review;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
+ -->			
+				<article class="articleStore border border-info rounded mb-3">
+					<div class="d-flex flex-column justify-content-around ml-3 my-auto py-2 h-100">
+						<div class="d-flex">
+							<span th:text="${review.userName}" class="userNameReview"></span>
+								<!-- <span th:text="${review.point}"></span> -->
+							<div class="ml-2">
+								<img th:id="id+${review.id}+point+0" height="20px" src="/quiz05/star_empty.png">
+								<img th:id="id+${review.id}+point+1" height="20px"  src="/quiz05/star_empty.png">
+								<img th:id="id+${review.id}+point+2" height="20px"  src="/quiz05/star_empty.png">
+								<img th:id="id+${review.id}+point+3" height="20px"  src="/quiz05/star_empty.png">
+								<img th:id="id+${review.id}+point+4" height="20px"  src="/quiz05/star_empty.png">
+							</div>
+						</div>
+						<div th:text="${#temporals.format(review.updatedAt, 'yyyy년 MM월 dd일')}" class="updatedAtReview"></div>
+						<div th:text="${review.review}" class="textReview"></div>
+						<div>
+							<div th:text="${review.menu}" class="badgeMenuReview badge badge-secondary"></div>
+						</div>
+					</div>
+				</article>
+			</div>		
+		</section>
+		<footer>
+			<span class="h5 text-secondary ml-3">(주)우와한형제</span>
+			<address class="text-secondary ml-4"><small>고객센터:1500-1500</small></address>
+		</footer>
+	</div>
+	<script th:inline="javascript">
+		$(document).ready(function(){
+			let pointCur;
+			let idReview;
+		    [# th:each="review : ${listReviews}"]
+		    	pointCur = [(${review.point})];
+		    	idReview = [(${review.id})];
+		    	console.log(pointCur);
+		    	
+		    	for(let i = 0; i < 5; i++){
+		    		let idCur = 'id' + idReview + 'point' + i;
+		    		if(pointCur > 1){
+			    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_fill.png');
+			    		pointCur -= 1;
+		    		} else if(pointCur == 0.5){
+			    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_half.png');
+			    		pointCur -= 0.5;
+		    		}
+		    		console.log(pointCur);
+		    	}
+		    [/]
+		})
+	</script>	
+</body>
+</html>
