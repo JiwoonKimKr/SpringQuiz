@@ -33,10 +33,14 @@
 						<td th:text="${status.index + 1}"></td>
 						<td th:text="${member.name}"></td>
 						<td th:text="${#temporals.format(member.birth, 'yyyy년 MM월 dd일') }"></td>
-						<td th:text="${member.phoneNumber}"></td>
+						<td th:text="${#strings.startsWith(member.phoneNumber,'010') ? (member.phoneNumber) : '유효하지 않은 전화번호'}"></td>
 						<td th:text="${member.nationality}"></td>
-						<td th:utext="${member.email}"></td>
-						<td th:text="${member.introduce}"></td>
+						<!-- ${member.email} -->
+						<th:block th:with="arrayEmail= ${#strings.arraySplit(member.email,'@')}">
+							<td th:utext="${#strings.concat('<b>', arrayEmail[0], '</b>@', arrayEmail[1])}"></td>
+						</th:block>
+						<!-- ${member.introduce} -->
+						<td th:text="${#strings.abbreviate(member.introduce,15)}"></td>
 					</tr>
 				</tbody>
 			</table>

@@ -22,17 +22,10 @@
 		<section class="contents mt-4">
 			<div id="titleArticles" th:text="${storeName} + '-리뷰'" class="display-4 mb-3">
 			</div>			
+			<div th:if="${#arrays.isEmpty(listReviews)} == true" >
+				<p class="h3 mx-auto my-5 text-center">작성된 리뷰가 없습니다.</p>
+			</div>		
 			<div th:each=" review : ${listReviews}">
-<!-- 
-	private int id;
-	private int storeId;
-	private String menu;
-	private String userName;
-	private int point;
-	private String review;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
- -->			
 				<article class="articleStore border border-info rounded mb-3">
 					<div class="d-flex flex-column justify-content-around ml-3 my-auto py-2 h-100">
 						<div class="d-flex">
@@ -71,14 +64,18 @@
 		    	
 		    	for(let i = 0; i < 5; i++){
 		    		let idCur = 'id' + idReview + 'point' + i;
-		    		if(pointCur > 1){
+		    		if(pointCur >= 1){
 			    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_fill.png');
 			    		pointCur -= 1;
+		    			console.log(pointCur);
 		    		} else if(pointCur == 0.5){
 			    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_half.png');
 			    		pointCur -= 0.5;
+		    			console.log(pointCur);
+		    		} else {
+		    			console.log(pointCur);
+		    			break;
 		    		}
-		    		console.log(pointCur);
 		    	}
 		    [/]
 		})

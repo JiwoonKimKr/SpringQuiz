@@ -17,17 +17,18 @@ public class Member {
 		this.name = name;
 	}
 	public String getPhoneNumber() {
-		if(phoneNumber.startsWith("010") == false) {
-			return "유효하지 않은 전화번호";
-		}
-		return phoneNumber;
+//		if(phoneNumber.startsWith("010") == false) {
+//			return "유효하지 않은 전화번호";
+//		}
+		return this.phoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getEmail() {
-		String[] arrayStr = email.split("@");
-		return "<b>".concat(arrayStr[0]).concat("</b>@").concat(arrayStr[1]);
+//		String[] arrayStr = email.split("@");
+//		String str = "<b>".concat(arrayStr[0]).concat("</b>@").concat(arrayStr[1])
+		return this.email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
@@ -39,10 +40,10 @@ public class Member {
 		this.nationality = nationality;
 	}
 	public String getIntroduce() {
-		if(introduce.length() > 15) {
-			return introduce.substring(0, 15).concat("...");
-		}
-		return introduce;
+//		if(introduce.length() > 15) {
+//			return introduce.substring(0, 15).concat("...");
+//		}
+		return this.introduce;
 	}
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
