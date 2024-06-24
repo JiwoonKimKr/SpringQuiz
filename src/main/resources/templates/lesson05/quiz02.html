@@ -49,12 +49,19 @@
 						<tr th:each="member : ${membership}">
 							<td th:text="${member.name}"></td>
 							<td th:text="${member.phoneNumber}"></td>
+							<!-- 
 							<div th:switch="${member.grade}">
 								<p th:case="'VIP'"> <td th:text="${member.grade}" th:classappend="'text-danger font-weight-bold'"></td> </p>
 								<p th:case="'GOLD'"> <td th:text="${member.grade}" th:classappend="'text-warning font-weight-bold'"></td> </p>
 								<p th:case="*"> <td th:text="${member.grade}" th:classappend="'text-dark'"></td> </p>
-							</div>							
-							<td th:text="${member.point} + P" th:classappend="${member.point >= 5000} ?'text-primary font-weight-bold'"></td>
+							</div>
+							 -->							
+							<td th:switch="${member.grade}">
+								<span th:case="'VIP'" class="text-danger font-weight-bold" th:text="${member.grade}"></span>
+								<span th:case="'GOLD'" class="text-warning font-weight-bold" th:text="${member.grade}"></span>
+								<span th:case="*" th:text="${member.grade}"></span>
+							</td>
+							<td th:text="|${member.point}P|" th:classappend="${member.point >= 5000} ? 'text-primary font-weight-bold'"></td>
 						</tr>
 					</tbody>
 				</table>

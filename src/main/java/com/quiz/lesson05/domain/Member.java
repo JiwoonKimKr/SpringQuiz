@@ -54,7 +54,4 @@ public class Member {
 	public void setBirth(LocalDate birth) {
 		this.birth = birth;
 	}
-
-	
-	
 }

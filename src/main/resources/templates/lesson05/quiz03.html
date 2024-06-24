@@ -16,7 +16,7 @@
 			<h1>회원 정보 리스트</h1>
 		</header>
 		<section>
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover text-center">
 				<thead>
 					<tr>
 						<th>No</th>
@@ -30,17 +30,26 @@
 				</thead>
 				<tbody>
 					<tr th:each="member , status : ${members}">
-						<td th:text="${status.index + 1}"></td>
+						<td th:text="${status.index + 1}"></td> <!-- 원래는 DB의 ID를 뿌리는 게 정석-->
 						<td th:text="${member.name}"></td>
-						<td th:text="${#temporals.format(member.birth, 'yyyy년 MM월 dd일') }"></td>
-						<td th:text="${#strings.startsWith(member.phoneNumber,'010') ? (member.phoneNumber) : '유효하지 않은 전화번호'}"></td>
-						<td th:text="${member.nationality}"></td>
+						<td th:text="${#temporals.format(member.birth, 'yyy년 M월 d일') }"></td>
+						
+						<td th:text="${#strings.startsWith(member.phoneNumber,'010') ?
+						(member.phoneNumber)
+						: '유효하지 않은 전화번호'}"></td>
+						
+						<td th:text="${#strings.replace(member.nationality, '삼국시대', '삼국 - ')}"></td>
+						
 						<!-- ${member.email} -->
 						<th:block th:with="arrayEmail= ${#strings.arraySplit(member.email,'@')}">
 							<td th:utext="${#strings.concat('<b>', arrayEmail[0], '</b>@', arrayEmail[1])}"></td>
 						</th:block>
+						
 						<!-- ${member.introduce} -->
-						<td th:text="${#strings.abbreviate(member.introduce,15)}"></td>
+						<td th:text="${#strings.length(member.introduce) > 15 ? 
+									#strings.substring(member.introduce, 0, 15).concat('...')
+									: (member.introduce)}" class="text-left"></td>
+									<!-- 그냥 ...을 기입해서 더하면 안나올 수 있다. -->
 					</tr>
 				</tbody>
 			</table>

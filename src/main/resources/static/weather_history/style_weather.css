@@ -8,6 +8,10 @@ a, a:hover {
 	color: #000;
 }
 
+.contents > aside{
+	min-height: 500px;
+}
+
 #titleLogoAside{
 	font-size:125%
 }
@@ -17,14 +21,19 @@ a, a:hover {
 }
 
 #menuWeather a {
+	margin-bottom: 3px;
 	color: #FFF;
 	font-size: 125%;
 	font-weight: bold;	
+	border: 1px solid transparent;
+	border-radius: 1em;
 }
 
 #menuWeather a:hover {
+	margin-bottom: 3px;
 	color: #FFF;
-	background-color: skyblue;
+	border: 1px solid #FFF;
+	border-radius: 1em;
 }
 
 #logoFooter {

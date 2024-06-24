@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <title>weatherList</title>
     <!-- jQuerry랑 bootStrap 관련 파일들 static에 저장되있어야 -->
-	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script src="/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-	<script src="/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 	
 	<link rel="stylesheet" href="/weather_history/style_weather.css" type="text/css">
 </head>
@@ -17,15 +17,15 @@
 	<div id="wrap">
 		<header>
 		</header>
-		<section class="contents d-flex">
+		<section class="contents d-flex h-100">
 			<aside th:fragment="navAsideWeatherList" class="p-auto bg-info col-3">
 				<div class="d-flex justify-content-center align-items-center py-3">
-					<img src="/weather_history/logo_mark.png" width="25px">
+					<img src="/img/logo_mark.png" width="25px">
 					<a id="titleLogoAside" class="text-white font-weight-bolder ml-2" href="/weather-history/weather-list-view">기상청</a>
 				</div>				
 				<nav class="">
 					<ul id="menuWeather" class="nav flex-column text-white">
-						<li class="nav-item"><a class="nav-link active" href="/weather-history/weather-list-view">날씨</a></li>
+						<li class="nav-item"><a class="nav-link" href="/weather-history/weather-list-view">날씨</a></li>
 						<li class="nav-item"><a class="nav-link" href="/weather-history/add-weather-view">날씨입력</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">테마날씨</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">관측 기후</a>
@@ -33,8 +33,8 @@
 					</ul>
 				</nav>
 			</aside>
-			<section class="listWeather container pt-3">
-				<p class="h3 font-weight-bold">과거 날씨</p>
+			<section class="listWeather container">
+				<p class="h3 font-weight-bold mt-3">과거 날씨</p>
 				<table class="table table-hover table-stripped text-center w-100">
 					<thead>
 						<tr>
@@ -51,10 +51,10 @@
 							<td th:text="${#temporals.format(weatherHistory.date, 'yyyy년 M월 d일')}"></td>
 							<!-- 맑음, 구름조금, 흐림, 비 -->
 							<div th:switch="${weatherHistory.weather}">
-								<p th:case="맑음"><td><img src="/weather_history/sunny.jpg" alt="sunny"> </td></p>
-								<p th:case="구름조금"><td><img src="/weather_history/partlyCloudy.jpg" alt="partlyCloudy"></td></p>
-								<p th:case="흐림"><td><img src="/weather_history/cloudy.jpg" alt="cloudy"></td></p>
-								<p th:case="비"><td><img src="/weather_history/rainy.jpg" alt="rainy"></td></p>
+								<p th:case="맑음"><td><img src="/img/sunny.jpg" alt="sunny"> </td></p>
+								<p th:case="구름조금"><td><img src="/img/partlyCloudy.jpg" alt="partlyCloudy"></td></p>
+								<p th:case="흐림"><td><img src="/img/cloudy.jpg" alt="cloudy"></td></p>
+								<p th:case="비"><td><img src="/img/rainy.jpg" alt="rainy"></td></p>
 							</div>
 							<td th:text="${weatherHistory.temperatures}"></td>
 							<td th:text="${weatherHistory.precipitation}"></td>
@@ -67,7 +67,7 @@
 		</section>
 		<footer th:fragment="footerWeatherList">
 			<address class="d-flex align-items-center mt-4 ml-4">
-				<img id="logoFooter" src="/weather_history/foot_logo_weather.png" width="150px" alt="footer-logo-for-KMA">
+				<img id="logoFooter" src="/img/foot_logo_weather.png" width="150px" alt="footer-logo-for-KMA">
 				<div class="ml-4">
 					<small class="text-secondary">
 						(07062) 서울시 동작구 여의대방로16길 61
