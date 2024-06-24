@@ -40,7 +40,9 @@
 							</div>
 						</div>
 						<div th:text="${#temporals.format(review.updatedAt, 'yyyy년 MM월 dd일')}" class="updatedAtReview"></div>
-						<div th:text="${review.review}" class="textReview"></div>
+						<div th:text="${(review.review) != null && #strings.length(review.review) > 15 ?
+							 #strings.abbreviate(review.review,15)
+							  : (review.review)}" class="textReview"></div>
 						<div>
 							<div th:text="${review.menu}" class="badgeMenuReview badge badge-secondary"></div>
 						</div>
@@ -55,6 +57,7 @@
 	</div>
 	<script th:inline="javascript">
 		$(document).ready(function(){
+			console.log([[${listReviews}]])
 			let pointCur;
 			let idReview;
 		    [# th:each="review : ${listReviews}"]

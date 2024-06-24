@@ -23,6 +23,7 @@ public class Lesson05Quiz05Controller {
 	@Autowired
 	private ReviewBO reviewBO;
 	
+	//localhost/lesson05/quiz05/index-stores
 	@GetMapping("/index-stores")
 	public String indexStoresView (Model model) {
 		
@@ -34,6 +35,7 @@ public class Lesson05Quiz05Controller {
 		return "lesson05/quiz05/indexStores";
 	}
 	
+	//localhost/lesson05/quiz05/reviews
 	@GetMapping("/reviews")
 	public String reviewsView (@RequestParam(value="storeId", required = false) Integer storeId
 							, @RequestParam(value="storeName", required = false) String storeName
