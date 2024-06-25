@@ -30,7 +30,7 @@
 					<div class="d-flex flex-column justify-content-around ml-3 my-auto py-2 h-100">
 						<div class="d-flex">
 							<span th:text="${review.userName}" class="userNameReview"></span>
-								<!-- <span th:text="${review.point}"></span> -->
+							<!-- <span th:text="${review.point}"></span> -->
 							<!-- 
 							<div class="ml-2">
 								<img th:id="|id${review.id}point0|" height="20px" src="/quiz05/star_empty.png">
@@ -40,20 +40,14 @@
 								<img th:id="|id${review.id}point4|" height="20px"  src="/quiz05/star_empty.png">
 							</div>
 							 -->
-							<div class="ml-2">
-								<div th:each="review : ${listReviews}">
-										<div th:each="index : ${#numbers.sequence(0, 4}">
-											<div th:if="${review.point - index >= 1}">
-												<img height="20px" th:src="/quiz05/star_fill.png">
-											</div>
-											<div th:if="${review.point - index == 0.5}">
-												<img height="20px" th:src="/quiz05/star_half.png">
-											</div>
-											<div th:if="${review.point - index < 0.5}">
-												<img height="20px" th:src="/quiz05/star_empty.png">
-											</div>
-										</div>
-								</div>
+							<div class="ml-2 d-flex">
+								<th:block th:with="pointCur = ${review.point}">
+									<div th:each="index : ${#numbers.sequence(0,4)}">
+										<img th:if="${(pointCur - index) >= 1}" th:src="@{/quiz05/star_fill.png}" height="20px">
+										<img th:if="${(pointCur - index) == 0.5}" th:src="@{/quiz05/star_half.png}" height="20px">
+										<img th:if="${(pointCur - index) < 0.5}" th:src="@{/quiz05/star_empty.png}" height="20px">
+									</div>
+								</th:block>
 							</div>
 						</div>
 						<div th:text="${#temporals.format(review.updatedAt, 'yyyy년 MM월 dd일')}" class="updatedAtReview"></div>
@@ -72,41 +66,41 @@
 			<address class="text-secondary ml-4"><small>고객센터:1500-1500</small></address>
 		</footer>
 	</div>
-	<!-- 
-	<script type="text/javascript" th:inline="javascript">
-		$(document).ready(function(){
-			try{
-				let pointCur;
-				let idReview;
-			    [# th:each="review : ${listReviews}"]
-			    	pointCur = [[${review.point}]];
-			    	idReview = [[${review.id}]];
-			    	
-			    	for(let i = 0; i < 5; i++){
-			    		if(pointCur < 0.5){
-			    			break;	
-			    		}
-			    		
-			    		let idCur = 'id' + idReview + 'point' + i;
-			    		console.log(idCur);
-			    		if(pointCur >= 1){
-				    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_fill.png');
-				    		pointCur -= 1;
-				    		continue;
-			    		}
-			    		if(pointCur == 0.5){
-				    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_half.png');
-				    		pointCur -= 0.5;
-				    		continue;
-			    		}
-			    	}
-			    [/]				
-			} catch {
-				
-			}
-
-		})
-	</script>
-	 -->	
+<!--/*  
+//<script type="text/javascript" th:inline="javascript">
+//	$(document).ready(function(){
+//		try{
+//			let pointCur;
+//			let idReview;
+//		    [# th:each="review : ${listReviews}"]
+//		    	pointCur = [[${review.point}]];
+//		    	idReview = [[${review.id}]];
+//		    	
+//		    	for(let i = 0; i < 5; i++){
+//		    		if(pointCur < 0.5){
+//		    			break;	
+//		    		}
+//		    		
+//		    		let idCur = 'id' + idReview + 'point' + i;
+//		    		console.log(idCur);
+//		    		if(pointCur >= 1){
+//			    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_fill.png');
+//			    		pointCur -= 1;
+//			    		continue;
+//		    		}
+//		    		if(pointCur == 0.5){
+//			    		document.getElementById(idCur).setAttribute('src', '/quiz05/star_half.png');
+//			    		pointCur -= 0.5;
+//			    		continue;
+//		    		}
+//		    	}
+//		    [/]				
+//		} catch {
+//			
+//		}
+//
+//	})
+//</script>
+*/-->	
 </body>
 </html>
