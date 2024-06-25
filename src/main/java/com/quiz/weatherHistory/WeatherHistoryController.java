@@ -41,6 +41,6 @@ public class WeatherHistoryController {
 		
 		weatherBO.addWeatherHistory(weatherHistory);
 		
-		return "redirect:/weather-history/weather-list-view";
+		return "redirect:weather-list-view";
 	}
 }

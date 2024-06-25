@@ -23,9 +23,9 @@
 			<div id="titleArticles" th:text="${titleArticles}" class="display-4 mb-3">
 			</div>			
 			<div th:each=" store : ${listStores}">
-				<article class="articleStore border border-info rounded mb-3">
+				<article class="articleRect border border-info rounded mb-3">
 						<div class="pl-3 h-100 d-flex flex-column justify-content-center">
-							<a class="textAnchor" th:href="@{/lesson05/quiz05/reviews?storeId={id}&storeName={store}(id=${store.id}, store=${store.store})}">
+							<a class="textAnchor text-decoration-none" th:href="@{/lesson05/quiz05/reviews?storeId={id}&storeName={store}(id=${store.id}, store=${store.store})}">
 								<span th:text="${store.store}" class="text-dark font-weight-bold h4"></span><br>
 								<span th:text="${store.phoneNumber}" class="text-dark h5"></span><br>
 								<span th:text="${store.address}" class="text-dark h5"></span>

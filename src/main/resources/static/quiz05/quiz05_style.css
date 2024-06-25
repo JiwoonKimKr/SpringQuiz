@@ -4,9 +4,13 @@
 	height: 125px;
 }
 
-.articleStore {
-	height: 125px;
+.articleRect {
+	height: 135px;
 	border-width: medium;
+}
+
+.articleRect:hover {
+	background-color: #dceef8;
 }
 
 .userNameReview{

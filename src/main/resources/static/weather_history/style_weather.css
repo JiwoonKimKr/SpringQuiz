@@ -9,12 +9,13 @@ a, a:hover {
 }
 
 .contents > aside{
+	width: 172px ;
 	min-height: 500px;
 	background-color: #53addd;
 }
 
 #titleLogoAside{
-	font-size:145%
+	font-size:150%
 }
 
 #menuWeather {
