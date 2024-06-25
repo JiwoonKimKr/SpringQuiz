@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>addWeather</title>
+    <title>날씨 정보</title>
     <!-- jQuerry랑 bootStrap 관련 파일들 static에 저장되있어야 -->
 	<script src="/js/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 	<script src="/js/jquery-ui.js"></script>
@@ -22,18 +22,18 @@
 		<section class="contents d-flex" >
 			<aside th:replace="~{/weather_history/weatherList :: navAsideWeatherList}">
 			</aside>
-			<article class="container">
-				<div class="display-4 mt-3">날씨 입력</div>			
+			<article class="container my-2 px-4">
+				<div class="display-4 my-3">날씨 입력</div>			
 				<div class="mt-4">
 					<form method="post" action="/weather-history/add-weather">
-						<div class="d-flex justify-content-around align-content-center">
-							<div class="form-group d-flex col-4 px-0">
+						<div class="d-flex justify-content-around align-content-around w-100">
+							<div class="form-group d-flex col-3 px-0">
 								<label for="datepicker" class="col-3 my-auto pl-0 pr-1 text-right">날짜</label>
-								<input type="text" id="datepicker" class="form-control my-auto" name="date">
+								<input type="text" id="datepicker" class="form-control my-auto ml-2" name="date">
 							</div>
 							<div class="form-group d-flex col-4 px-0">
 								<label for="weather" class="col-3 my-auto pl-0 pr-1 text-right" >날씨</label>
-								<select class="form-control my-auto" id="weather" name="weather">
+								<select class="form-control col-8 my-auto ml-2" id="weather" name="weather">
 									<option value="맑음">맑음</option>
 									<option value="구름조금">구름조금</option>
 									<option value="흐림">흐림</option>
@@ -41,8 +41,8 @@
 								</select>
 							</div>
 							<div class="form-group d-flex col-4 px-0">
-								<label for="microDust" class="col-5 my-auto pl-0 pr-1 text-right">미세먼지</label>
-								<select class="form-control" id="microDust" name="microDust">
+								<label for="microDust" class="col-4 my-auto pl-0 pr-1 text-right">미세먼지</label>
+								<select class="form-control ml-2" id="microDust" name="microDust">
 									<option value="좋음">좋음</option>
 									<option value="보통">보통</option>
 									<option value="나쁨">나쁨</option>
@@ -50,24 +50,24 @@
 								</select>
 							</div>
 						</div>
-						<div class="d-flex justify-content-around align-content-center mt-4">
-							<div class="input-group col-4 px-0">
+						<div class="d-flex justify-content-around align-content-around mt-4">
+							<div class="input-group col-3 px-0">
 								<label for="temperatures" class="col-3 my-auto pl-0 pr-1 text-right">기온</label>
-								<input type="text" class="form-control h-100 my-auto" id="temperatures" name="temperatures">
+								<input type="text" class="form-control h-100 my-auto ml-2" id="temperatures" name="temperatures">
 								<div class="input-group-append h-100 my-auto">
 									<span class="input-group-text">℃</span>
 								</div>
 							</div>						
 							<div class="input-group col-4 px-0 text-right">
-								<label for="precipitation" class="col-4 my-auto pl-0 pr-1 text-right">강수량</label>
-								<input type="text" class="form-control h-100 my-auto" id="precipitation" name="precipitation">
+								<label for="precipitation" class="col-4 my-auto pl-3 pr-1 text-right">강수량</label>
+								<input type="text" class="form-control h-100 my-auto ml-2" id="precipitation" name="precipitation">
 								<div class="input-group-append h-100 my-auto">
 									<span class="input-group-text">mm</span>
 								</div>
 							</div>						
 							<div class="input-group col-4 px-0">
 								<label for="windSpeed" class="col-3 my-auto pl-0 pr-1 text-right">풍속</label>
-								<input type="text" class="form-control h-100 my-auto" id="windSpeed" name="windSpeed">
+								<input type="text" class="form-control h-100 my-auto ml-2" id="windSpeed" name="windSpeed">
 								<div class="input-group-append h-100 my-auto">
 									<span class="input-group-text">km/h</span>
 								</div>
