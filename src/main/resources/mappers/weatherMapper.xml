@@ -41,4 +41,28 @@
 			, NOW()		
 		)
 	</insert>
+	<insert id="insertWeatherHistoryAsMap" parameterType="map">
+		INSERT INTO `weather_history`
+		(
+			`date`
+			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+			,`createdAt`
+			,`updatedAt`		
+		)
+		VALUE
+		(
+			 #{date}
+			, #{weather}
+			, #{temperatures}
+			, #{precipitation}
+			, #{microDust}
+			, #{windSpeed}
+			, NOW()
+			, NOW()		
+		)	
+	</insert>
 </mapper>
