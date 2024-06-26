@@ -15,17 +15,17 @@
 		<header>
 		</header>
 		<section class="contents">
-			<h1>즐겨찾기 추가하기</h1>
+			<div class="h2 my-2 py-2">즐겨찾기 추가하기</div>
 			<form method="post" action="/lesson06/quiz01/add-bookmark">
 				<div class="form-group">
-					<label for="name">제목</label>
-					<input id="name" name="name" type="text" class="form-control">
+					<label for="name" class="h5">제목</label>
+					<input id="name" name="name" type="text" class="form-control col-5">
 				</div>
 				<div class="form-group">
-					<label for="url">주소</label>
-					<input id="url" name="url" type="text" class="form-control">
+					<label for="url" class="h5">주소</label>
+					<input id="url" name="url" type="text" class="form-control col-8">
 				</div>
-				<button type="button" id="btnSubmit" class="btn btn-success">추가</button>
+				<button type="button" id="btnSubmit" class="btn btn-success w-50 mx-auto">추가</button>
 			</form>
 		</section>
 	</div>
@@ -43,16 +43,33 @@
 
 				let url = $("#url").val().trim();
 				if(!url){
+					alert("URL을 기재해주세요.");
 					return;
 				}
 
-				if(url.split("://")[0] != "https"){
-					
+				if(url.split("://")[0] != "https" && url.split("://")[0] != "http"){
+					alert("https 형식에 맞게 작성해주세요.");
+					return;
 				}
-
-				// $.ajax{
-
-				// }
+				console.log(`${name}, ${url}`)
+					
+				alert("성공");
+				$.ajax({
+					type:"POST"
+					, url:"/lesson06/quiz01/add-bookmark"
+					, data:{"name":name, "url":url}
+					
+					// response
+					// callback 함수
+					, success:function(data){
+						if(data =="success"){
+							location.href= "/lesson06/quiz01/show-List-bookmarks-view"
+						}
+					}
+					, error:function(xhr, status, error){
+						alert(`${xhr}, ${status}, ${error}`)
+					}
+				})			
 			});
 		});
 	</script>

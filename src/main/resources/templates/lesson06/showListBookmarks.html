@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>즐겨찾기 목록</title>
+    <!-- jQuerry랑 bootStrap 관련 파일들 static에 저장되있어야 -->
+	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="wraper" class="container">
+		<header>
+		</header>
+		<section class="contents">
+			<article class="mt-2">
+				<div class="h2 py-3">즐겨 찾기 목록</div>
+				<table class="table table-hover table-striped text-center">
+					<thead>
+						<th>No.</th>
+						<th>이름</th>
+						<th>주소</th>
+					</thead>
+					<tbody>
+						<!--Model Attributes; List<Bookmark> listBookmarks -->
+						<tr th:each=" bookmark, status: ${listBookmarks}">
+							<td th:text="${status.index}"></td>
+							<td th:text="${bookmark.name}"></td>
+							<td th:text="${bookmark.url}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+	</div>
+</body>
+</html>
