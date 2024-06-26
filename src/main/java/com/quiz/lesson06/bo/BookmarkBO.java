@@ -20,5 +20,10 @@ public class BookmarkBO {
 	public List<Bookmark> getListBookmarks() {
 		return bookmarkMapper.selectListBookmarks() ;
 	}
+
+	public Boolean checkUrlDuplicate(String url) {
+		List<Bookmark> listBookmarks = bookmarkMapper.selectBookmarkByUrl(url);
+		return (listBookmarks.size() < 1) ? true : false;
+	}
 	
 }

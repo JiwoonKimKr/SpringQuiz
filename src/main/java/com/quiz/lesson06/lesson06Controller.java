@@ -46,4 +46,14 @@ public class lesson06Controller {
 		model.addAttribute("listBookmarks", listBookmarks);
 		return "lesson06/showListBookmarks";
 	}
+	
+	@ResponseBody
+	@GetMapping("/quiz02/check-url-duplicate")
+	public String checkUrlDuplicate( @RequestParam("url") String url) {
+		//DB Select
+		Boolean isDuplicate = bookmarkBO.checkUrlDuplicate(url);
+		
+		return (isDuplicate == true) ? "success" : "fail";
+	}
+	
 }

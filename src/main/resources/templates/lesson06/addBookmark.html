@@ -23,15 +23,58 @@
 				</div>
 				<div class="form-group">
 					<label for="url" class="h5">주소</label>
-					<input id="url" name="url" type="text" class="form-control col-8">
+					<div class="form-row">
+						<div class="col-md-10 mb-3">
+							<input id="url" name="url" type="text" class="form-control" aria-describedby="feedbackUrlDuplicateCheck" required>
+							<div id="feedbackUrlDuplicateCheck" class="invalid-feedback">
+								중복된 URL입니다.
+							</div>
+						</div>
+						<div class="col-md-2 mb-3">
+							<button type="button" id="btnUrlDuplicateCheck" class="btn btn-info w-100"> 중복 확인 </button>
+						</div>
+					</div>
 				</div>
-				<button type="button" id="btnSubmit" class="btn btn-success w-50 mx-auto">추가</button>
+				<button type="button" id="btnSubmit" class="btn btn-success w-100">추가</button>
 			</form>
 		</section>
 	</div>
 
 	<script>
 		$(document).ready(function(){
+			let hasUrlDuplicateChecked = false;
+			
+			$("#btnUrlDuplicateCheck").on('click', function(){
+				let url = $("#url").val().trim();
+				if($("#url").hasClass("is-valid")){
+					$("#url").removeClass("is-valid")
+				}
+				if($("#url").hasClass("is-invalid")){
+					$("#url").removeClass("is-invalid")
+				}
+				
+				
+				$.ajax({
+					type:"GET"
+					, url: "/lesson06/quiz02/check-url-duplicate"
+					, data: {"url": url}
+					
+					// response
+					// callback 함수
+					, success:function(data){
+						if(data =="success"){
+							$("#url").addClass("is-valid");
+							hasUrlDuplicateChecked = true;
+						} else if(data == "fail"){
+							$("#url").addClass("is-invalid");
+						}
+					}
+					, error:function(xhr, status, error){
+						alert(`${xhr}, ${status}, ${error}`)
+					}
+				})
+			})
+			
 			$("#btnSubmit").on("click", function(){
 
 				//name , url
@@ -49,6 +92,10 @@
 
 				if(url.split("://")[0] != "https" && url.split("://")[0] != "http"){
 					alert("https 형식에 맞게 작성해주세요.");
+					return;
+				}
+				
+				if(hasUrlDuplicateChecked == false){
 					return;
 				}
 				console.log(`${name}, ${url}`)
