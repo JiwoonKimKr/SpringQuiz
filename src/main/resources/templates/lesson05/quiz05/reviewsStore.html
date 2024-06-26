@@ -40,13 +40,11 @@
 								<img th:id="|id${review.id}point4|" height="20px"  src="/quiz05/star_empty.png">
 							</div>
 							 -->
-							<div class="ml-2 d-flex">
-								<th:block th:with="pointCur = ${review.point}">
-									<div th:each="index : ${#numbers.sequence(0,4)}">
-										<img th:if="${(pointCur - index) >= 1}" th:src="@{/quiz05/star_fill.png}" height="20px">
-										<img th:if="${(pointCur - index) == 0.5}" th:src="@{/quiz05/star_half.png}" height="20px">
-										<img th:if="${(pointCur - index) < 0.5}" th:src="@{/quiz05/star_empty.png}" height="20px">
-									</div>
+							<div class="ml-2 d-flex" th:if="${review.point}">
+								<th:block th:each="index : ${#numbers.sequence(0,4)}">
+									<img th:if="${(review.point - index) >= 1}" th:src="@{/quiz05/star_fill.png}" height="20px">
+									<img th:if="${(review.point - index) == 0.5}" th:src="@{/quiz05/star_half.png}" height="20px">
+									<img th:if="${(review.point - index) < 0.5}" th:src="@{/quiz05/star_empty.png}" height="20px">
 								</th:block>
 							</div>
 						</div>
