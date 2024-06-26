@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class Lesson01Quiz01Controller {
 
-	// "localhost/losson01/quiz01/1"
+	// http://localhost/lesson04/quiz01/seller-info-view
 	@RequestMapping("/1")
 	@ResponseBody
 	public String quiz01_1() {
