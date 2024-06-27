@@ -46,15 +46,25 @@
 	<script>
 		$(document).ready(function(){
 			let hasUrlDuplicateChecked = false;
+			
+			$("#url").on('change', function(){
+				
+				hasUrlDuplicateChecked = false;
+				
+				$("#url").removeClass("is-valid");
+				
+				$("#url").addClass("is-invalid");
+				
+				$("#feedbackUrlDuplicateCheck").text("중복 확인 버튼을 눌러주세요.")
+			})
+			
 			$("#btnUrlDuplicateCheck").on('click', function(){
 				let url = $("#url").val().trim();
-				if($("#url").hasClass("is-valid")){
-					$("#url").removeClass("is-valid")
-				}
-				if($("#url").hasClass("is-invalid")){
-					$("#url").removeClass("is-invalid")
-				}
 				
+				$("#url").removeClass("is-valid")
+				
+				$("#url").removeClass("is-invalid")
+
 				if(!url){
 					alert("URL을 기재해주세요.");
 					return;
@@ -65,10 +75,6 @@
 					return;
 				}				
 				
-				
-				
-				console.log(hasUrlDuplicateChecked)
-				
 				$.ajax({
 					type:"GET"
 					, url: "/lesson06/quiz02/check-url-duplicate"
@@ -78,10 +84,11 @@
 					// callback 함수
 					, success:function(data){
 						hasUrlDuplicateChecked = true;
-						if(data.result =="success"){
+						if(data.result == "success"){
 							$("#url").addClass("is-valid");
 						} else{
 							$("#url").addClass("is-invalid");
+							$("#feedbackUrlDuplicateCheck").text("중복된 URL입니다.")
 						}
 					}
 					, error:function(xhr, status, error){
@@ -103,15 +110,16 @@
 
 				let url = $("#url").val().trim();
 				
-				//이 방식 말고 함수 써서 바꿔야
 				if(hasUrlDuplicateChecked == false){
-					console.log(hasUrlDuplicateChecked);
+					console.log("hasDuplicateChecked: " + hasUrlDuplicateChecked);
 					alert("즐겨찾기 URL을 입력 후, 중복 확인하여 주십시오.");
 					return;
 				}
 				
-				let childrenDuplicate = $("#feedbackUrlDuplicateCheck").children() 
-				if(childrenDuplicate.length >= 1){
+				let isUrlDuplicate = $("#url").hasClass("is-invalid");
+				
+				if(isUrlDuplicate == true){
+					console.log("isUrlDuplicate: " + isUrlDuplicate);
 					alert("중복한 URL이 존재합니다. 다른 URL을 기입하여 주십시오.");
 					return;
 				}

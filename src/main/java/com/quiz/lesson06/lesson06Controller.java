@@ -66,7 +66,7 @@ public class lesson06Controller {
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 200);
-		result.put("result", isDuplicate);
+		result.put("result", isDuplicate ? "fail" : "success");
 		return result;
 	}
 	
