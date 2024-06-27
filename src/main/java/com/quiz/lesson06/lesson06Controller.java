@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,13 @@ public class lesson06Controller {
 		Boolean isDuplicate = bookmarkBO.checkUrlDuplicate(url);
 		
 		return (isDuplicate == true) ? "success" : "fail";
+	}
+	
+	@ResponseBody
+	@DeleteMapping("/quiz02/deleteBookmarkById")
+	public String deleteBookmarkById(@RequestParam("id") int id) {
+		bookmarkBO.deleteBookmarkById(id);
+		return "success"; 
 	}
 	
 }

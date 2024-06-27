@@ -25,5 +25,9 @@ public class BookmarkBO {
 		List<Bookmark> listBookmarks = bookmarkMapper.selectBookmarkByUrl(url);
 		return (listBookmarks.size() < 1) ? true : false;
 	}
+
+	public void deleteBookmarkById(int id) {
+		bookmarkMapper.deleteBookmarkById(id);
+	}
 	
 }

@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.quiz.lesson02.mapper.ReviewMapper">
- 	<select id="selectReviewsByStoreId" resultType="com.quiz.lesson02.domain.Review">
+ 	<select id="selectReviewsByStoreId" parameterType="int" resultType="com.quiz.lesson02.domain.Review">
  		SELECT
 			a.`id`
 			, a.`storeId`

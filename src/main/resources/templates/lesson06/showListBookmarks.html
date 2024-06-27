@@ -16,24 +16,58 @@
 		</header>
 		<section class="contents">
 			<article class="mt-2">
-				<div class="h2 py-3">즐겨 찾기 목록</div>
+				<div class="d-flex justify-content-between">
+					<div class="h2 py-3">즐겨 찾기 목록</div>
+					<a href="/lesson06/quiz01/add-bookmark-view" class="form-control col-4 btn btn-info my-auto">즐겨찾기 추가</a>
+				</div>
 				<table class="table table-hover table-striped text-center">
 					<thead>
-						<th>No.</th>
-						<th>이름</th>
-						<th>주소</th>
+						<th class="col-1">No.</th>
+						<th class="col-3">이름</th>
+						<th class="col-5">주소</th>
+						<th class="col-3">DELETE</th>
 					</thead>
 					<tbody>
 						<!--Model Attributes; List<Bookmark> listBookmarks -->
 						<tr th:each=" bookmark, status: ${listBookmarks}">
-							<td th:text="${status.index}"></td>
-							<td th:text="${bookmark.name}"></td>
-							<td th:text="${bookmark.url}"></td>
+							<td th:text="${status.index + 1}" class="pt-sm-3"></td>
+							<td th:text="${bookmark.name}" class="pt-sm-3"></td>
+							<td th:text="${bookmark.url}" class="pt-sm-3"></td>
+							<td>
+								<button type="button" th:id="${bookmark.id}" class="btnDeleteBookmark form-control btn btn-danger"> 삭제 하기</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
 		</section>
 	</div>
+	<script type="text/javascript" th:inline="javascript">
+		$(document).ready(function(){
+			
+			//Clicked Delete Btn 
+			$(".btnDeleteBookmark").on('click', function(){
+				let idBookmarkforDelete = $(this).attr('id');
+				console.log(idBookmarkforDelete);
+					
+				//Validation: DB SelectBookmarkById
+				$.ajax({
+					type:"DELETE"
+					, url: "/lesson06/quiz02/deleteBookmarkById"
+					, data: {"id": idBookmarkforDelete}
+					, success:function(data){
+						if(data == "success"){
+							location.href= "/lesson06/quiz01/show-List-bookmarks-view"
+						} else if (data == "fail"){
+							alert("해당 댓글을 삭제하지 못하였습니다.")
+						}
+					}
+					, error: function(xhr, status, error){
+						alert(`${xhr}, ${status}, ${error}`)
+					}
+				})
+			})
+		})
+	</script>
 </body>
 </html>
