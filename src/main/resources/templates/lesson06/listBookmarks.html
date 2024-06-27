@@ -32,9 +32,11 @@
 						<tr th:each=" bookmark, status: ${listBookmarks}">
 							<td th:text="${status.index + 1}" class="pt-sm-3"></td>
 							<td th:text="${bookmark.name}" class="pt-sm-3"></td>
-							<td th:text="${bookmark.url}" class="pt-sm-3"></td>
+							<td class="pt-sm-3">
+								<a th:href="${bookmark.url}" th:text="${bookmark.url}" class="text-decoration-none"></a>
+							</td>
 							<td>
-								<button type="button" th:id="${bookmark.id}" class="btnDeleteBookmark form-control btn btn-danger"> 삭제 하기</button>
+								<button type="button" th:id="${bookmark.id}" class="btnDeleteBookmark form-control btn btn-danger mx-auto"> 삭제 하기</button>
 							</td>
 						</tr>
 					</tbody>
@@ -52,12 +54,14 @@
 					
 				//Validation: DB SelectBookmarkById
 				$.ajax({
+					//Dictionary 형식으로 데이터가 주입된다.
+					//Request는 그래서 Key:Value 쌍 형태의 JSON으로 옮겨진다.
 					type:"DELETE"
 					, url: "/lesson06/quiz02/deleteBookmarkById"
 					, data: {"id": idBookmarkforDelete}
 					, success:function(data){
-						if(data == "success"){
-							location.href= "/lesson06/quiz01/show-List-bookmarks-view"
+						if(data.result == "success"){
+							location.href= "/lesson06/quiz01/List-bookmarks-view"
 						} else if (data == "fail"){
 							alert("해당 댓글을 삭제하지 못하였습니다.")
 						}
@@ -66,8 +70,8 @@
 						alert(`${xhr}, ${status}, ${error}`)
 					}
 				})
-			})
-		})
+			}); // 추가버튼 on(click)이벤트
+		}); //document.ready()
 	</script>
 </body>
 </html>

@@ -27,41 +27,58 @@ public class lesson06Controller {
 		return "lesson06/addBookmark";
 	}
 	
+	//AJAX가 하는 요청
+	//즐겨찾기 추가 로직
 	@ResponseBody
 	@PostMapping("/quiz01/add-bookmark")
-	public String addBookmark(
+	public Map<String, Object> addBookmark(
 			@RequestParam("name") String name
 			, @RequestParam("url") String url ) {
 		//DB Insert
 		bookmarkBO.addBookmark(name, url);
 		
+		//성공한 경우의 JSON
 		//AJAX Response String
-		return "success";
+		// ResponseBody로 이제 JSON을 응답한다.
+			//내려보내는 일련의 규칙
+			// {"code" : 200, "result": "성공" }
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "success");
+		
+		return result; //Map<>인 result를 리턴하면 JSON String을 응답한다.
 	}
 	
-	@GetMapping("/quiz01/show-List-bookmarks-view")
+	@GetMapping("/quiz01/List-bookmarks-view")
 	public String showListBookmarks(Model model) {
 		
 		List<Bookmark> listBookmarks = bookmarkBO.getListBookmarks();
 		
 		model.addAttribute("listBookmarks", listBookmarks);
-		return "lesson06/showListBookmarks";
+		return "lesson06/listBookmarks";
 	}
 	
 	@ResponseBody
 	@GetMapping("/quiz02/check-url-duplicate")
-	public String checkUrlDuplicate( @RequestParam("url") String url) {
+	public Map<String, Object> checkUrlDuplicate( @RequestParam("url") String url) {
 		//DB Select
 		Boolean isDuplicate = bookmarkBO.checkUrlDuplicate(url);
 		
-		return (isDuplicate == true) ? "success" : "fail";
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", isDuplicate);
+		return result;
 	}
 	
 	@ResponseBody
 	@DeleteMapping("/quiz02/deleteBookmarkById")
-	public String deleteBookmarkById(@RequestParam("id") int id) {
+	public Map<String, Object> deleteBookmarkById(@RequestParam("id") int id) {
 		bookmarkBO.deleteBookmarkById(id);
-		return "success"; 
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("result", "success");
+		return result; 
 	}
 	
 }

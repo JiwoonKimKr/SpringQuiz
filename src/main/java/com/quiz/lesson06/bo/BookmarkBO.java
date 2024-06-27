@@ -22,8 +22,7 @@ public class BookmarkBO {
 	}
 
 	public Boolean checkUrlDuplicate(String url) {
-		List<Bookmark> listBookmarks = bookmarkMapper.selectBookmarkByUrl(url);
-		return (listBookmarks.size() < 1) ? true : false;
+		return bookmarkMapper.isBookmarkDuplicateByUrl(url);
 	}
 
 	public void deleteBookmarkById(int id) {
