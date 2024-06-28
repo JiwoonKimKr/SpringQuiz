@@ -1,5 +1,6 @@
 package com.quiz.booking;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +47,9 @@ public class BookingController {
 	///http://localhost/booking/get-bookmark
 	@ResponseBody
 	@PostMapping("/get-booking")
-	public Map<String, Object> getBookingById(
-			@RequestParam Map<String, String> data){
-		String name = data.get("name");
-		String phoneNumber = data.get("phoneNumber");
+	public Map<String, Object> getBookingByNamePhoneNumber(
+			@RequestParam("name") String name
+			, @RequestParam("phoneNumber") String phoneNumber){
 		Booking booking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
 		
 		Map<String, Object> result = new HashMap<>();
@@ -64,6 +64,28 @@ public class BookingController {
 		return result;
 	}
 	
+	///http://localhost/booking/make-booking
+	@ResponseBody
+	@PostMapping("/make-booking")
+	public Map<String, Object> addBooking(
+			@RequestParam("name") String name
+			, @RequestParam("headcount") int headcount
+			, @RequestParam("day") int day
+			, @RequestParam("date") String date
+			, @RequestParam("phoneNumber") String phoneNumber){
+		int rowCoungInsert = bookingBO.addBooking(name, headcount, day, date, phoneNumber);
+				
+		Map<String, Object> result = new HashMap<>();
+		if(rowCoungInsert > 0) {
+			result.put("code", 200);
+			result.put("result", "예약 추가 성공하였습니다. \n 현재 대기중 입니다.");
+		} else {
+			result.put("code", 500);
+			result.put("error_message", "예약을 추가하지 못하였습니다.");
+		}
+		
+		return result;
+	}
 
 	//http://localhost/booking/delete-booking?id=
 	@ResponseBody

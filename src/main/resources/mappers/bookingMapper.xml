@@ -51,6 +51,32 @@
 		AND
 			`phoneNumber` = #{phoneNumber}
 	</select>
+	<insert id="insertBooking" parameterType="map">
+		INSERT INTO
+			`booking`
+		(
+			`name`
+			, `headcount`
+			, `day`
+			, `date`
+			, `phoneNumber`
+			, `state`
+			, `createdAt`
+			, `updatedAt`					
+		)
+		VALUE
+		(
+			#{name}
+			, #{headcount}
+			, #{day}
+			, #{date}
+			, #{phoneNumber}
+			, '대기중'	
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	
 	<delete id="deleteBookingById" parameterType="int">
 		DELETE
 		FROM

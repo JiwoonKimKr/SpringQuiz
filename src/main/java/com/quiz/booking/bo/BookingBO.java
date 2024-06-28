@@ -1,5 +1,7 @@
 package com.quiz.booking.bo;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,10 @@ public class BookingBO {
 
 	public Booking getBookingByNamePhoneNumber(String name, String phoneNumber) {
 		return bookingMapper.selectBookingByNamePhoneNumber(name, phoneNumber);
+	}
+
+	public int addBooking(String name, int headcount, int day, String date, String phoneNumber) {
+		return bookingMapper.insertBooking(name, headcount, day, date, phoneNumber);
 	}
 
 }

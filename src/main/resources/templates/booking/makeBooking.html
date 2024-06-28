@@ -20,13 +20,109 @@
 		<div id="wrap" class="container">
 			<header th:replace="~{/booking/checkBooking :: headerHomeBooking}" class="h-100">
 			</header>
-			<section>
-				<article>
-				
+			<section class="mt-3">
+				<article class="w-50 mx-auto">
+					<div class="form-group">
+						<p class="h2 text-center font-weight-bold"> 예약 목록 보기</p>
+					</div>
+					<div class="form-group">
+						<label for="text_name" class="font-weight-bold">이름</label>
+						<input type="text" id="text_name" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="text_date" class="font-weight-bold">예약날짜</label>
+						<input type="text" id="text_date" class="form-control form-control-sm col-7">
+					</div>
+					<div class="form-group">
+						<label for="text_day" class="font-weight-bold">숙박일수</label>
+						<input type="text" id="text_day" class="form-control" placeholder="예시) 2">
+					</div>
+					<div class="form-group">
+						<label for="text_headcount" class="font-weight-bold">숙박인원</label>
+						<input type="text" id="text_headcount" class="form-control" placeholder="예시) 3">
+					</div>
+					<div class="form-group">
+						<label for="text_phoneNumber" class="font-weight-bold">전화번호</label>
+						<input type="text" id="text_phoneNumber" class="form-control" placeholder="010-0000-0000">
+					</div>
+					<div>
+						<button type="button" id="btnMakingReservation" class="btn btn-warning w-100">예약하기</button>
+					</div>
 				</article>
 			</section>
 			<footer th:replace="~{/booking/checkBooking :: footerHomeBooking}"  class="px-4 pt-4">
 			</footer>
 		</div>	
+		<script>
+			$(document).ready(function(){
+				let date = '';
+				$("#text_date").datepicker({
+                    changeMonth : true
+                    , changeYear : true
+                    , minDate: 0  //오늘 이후부터 선택 가능
+                    , dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
+                    , dateFormat: 'yy-mm-dd'
+                    , onSelect:function(dateText){
+                    	date = $(this).val();
+                    }
+                })
+
+                $("#btnMakingReservation").on('click', function(){
+                	let name = $("#text_name").val().trim();
+                	//let date = $("#text_date").val().trim();
+                	let day = $("#text_day").val().trim();
+                	let headcount = $("#text_headcount").val().trim();
+                    let phoneNumber = $("#text_phoneNumber").val().trim();
+                    
+                    if(name == ""){
+                        alert("이름을 작성해 주십시오.")
+                        return
+                    }
+                    if(date == ""){
+                        alert("숙박 일자을 선택해 주십시오.")
+                        return
+                    }
+                    if(day == ""){
+                    	alert("숙박 인원을 작성해 주십시오.")
+                        return
+                    }
+                    if(headcount == ""){
+                    	alert("숙박 인원을 작성해 주십시오.")
+                        return
+                    }
+                    let regex = /^(01[0-9]{1}-?[0-9]{4}-?[0-9]{4}|01[0-9]{8})$/
+                    if(regex.test(phoneNumber) == false){
+                        alert("올바른 전화번호를 입력하여 주십시오.")
+                        return
+                    }
+                    
+                    console.log(`${name}, ${date}, ${day}, ${headcount}, ${phoneNumber}`);
+                    
+                    $.ajax({
+               			type:"POST"
+               			, url: "/booking/make-booking"
+               			, data:{
+               				"name": name
+               				, "date": date
+               				, "day": day
+               				, "headcount": headcount
+               				, "phoneNumber" : phoneNumber}
+               			, success : function(data){
+       						//{"code":200, "result" : "success"}
+       						if(data.code == 200){
+       							alert(data.result)
+       						} else if (data.code == 500){
+       							alert(data.error_message)
+       						}
+                        }
+       					, error: function(xhr, status, error){
+       						alert('서버 에러; 예약 실패 하였습니다.')
+               			}
+                    })
+                    
+                })
+			})
+
+		</script>
 	</body>
 </html>

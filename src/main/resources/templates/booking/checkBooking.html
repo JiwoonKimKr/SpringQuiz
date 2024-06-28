@@ -98,15 +98,6 @@
         <!-- Javascript -->
         <script>
             $(document).ready(function(){
-
-                $("#datepicker-reservation").datepicker({
-                    changeMonth : true
-                    , changeYear : true
-                    , minDate: 0  //오늘 이후부터 선택 가능
-                    , dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']
-                    , dateFormat: 'yy년 mm월 dd일'
-                })
-                
                 $("#btn-check-resevation").on('click',function(){
 	                let nameGuest = $("#text_nameGuest").val().trim();
 	                let phoneNumber = $("#text_phoneNumber").val();
@@ -125,9 +116,7 @@
                		$.ajax({
                			type:"Post"
                			, url: "/booking/get-booking"
-               			, data:{
-               					"name": nameGuest
-               					, "phoneNumber": phoneNumber
+               			, data:{ "name": nameGuest, "phoneNumber": phoneNumber
             			}
                			, dataType : "json"
                			, success : function(data){
