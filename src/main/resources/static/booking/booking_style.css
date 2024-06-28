@@ -1,0 +1,19 @@
+a, a:hover {color:black}
+
+header {height: 100px;}
+.menu {height: 40px}
+
+.downside {min-height: 250px;}
+
+.menu {background-color:peru}
+header nav li:hover {background-color:rgb(255, 153, 0);}
+header nav a, a:hover {color:white; font-weight:bold}
+.side-left, .side-right {background-color: #B1520F;}
+.side-left {font-size:40px;}
+.verify-rsv {background-color:#CF6317}
+
+.member-verify-reservation {display:flex;}
+.name_input {text-align:right; padding-right:3px;}
+
+.non-member-verify-reservation {display:none;}
+

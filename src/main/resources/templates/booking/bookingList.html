@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>bookingList</title>
+    <!-- jQuerry랑 bootStrap 관련 파일들 static에 저장되있어야 -->
+	<script src="/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<script src="/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="wrap" class="container px-5 pb-4">
+		<header th:replace="~{/booking/checkBooking :: headerHomeBooking}" class="h-100">
+		</header>
+		<section class="contents">
+			<!-- Model Attributes : List<Bookings> listBookings -->
+			<article>
+				<table class="table table-hover table-striped">
+					<thead>
+					</thead>
+					<tbody>
+						<tr th:each="booking: ${listBookings}">
+							<td th:text="${booking.name}"></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+		</section>
+	</div>
+</body>
+</html>
