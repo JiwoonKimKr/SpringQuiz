@@ -17,4 +17,16 @@ public class BookingBO {
 		return bookingMapper.selectListBookings();
 	}
 
+	public int deleteBookingById(int id) {
+		return bookingMapper.deleteBookingById(id);
+	}
+
+	public Booking getBookingById(int id) {
+		return bookingMapper.selectBookingById(id);
+	}
+
+	public Booking getBookingByNamePhoneNumber(String name, String phoneNumber) {
+		return bookingMapper.selectBookingByNamePhoneNumber(name, phoneNumber);
+	}
+
 }

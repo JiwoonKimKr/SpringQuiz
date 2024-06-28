@@ -22,7 +22,7 @@ public class lesson06Controller {
 	private BookmarkBO bookmarkBO;
 
 	// localhost/lesson06/quiz01/add-bookmark-view
-	@GetMapping("/quiz01/add-bookmark-view")
+	@GetMapping("/add-bookmark-view")
 	public String addBookmarkView() {
 		return "lesson06/addBookmark";
 	}
@@ -30,7 +30,7 @@ public class lesson06Controller {
 	//AJAX가 하는 요청
 	//즐겨찾기 추가 로직
 	@ResponseBody
-	@PostMapping("/quiz01/add-bookmark")
+	@PostMapping("/add-bookmark")
 	public Map<String, Object> addBookmark(
 			@RequestParam("name") String name
 			, @RequestParam("url") String url ) {
@@ -49,7 +49,7 @@ public class lesson06Controller {
 		return result; //Map<>인 result를 리턴하면 JSON String을 응답한다.
 	}
 	
-	@GetMapping("/quiz01/List-bookmarks-view")
+	@GetMapping("/List-bookmarks-view")
 	public String showListBookmarks(Model model) {
 		
 		List<Bookmark> listBookmarks = bookmarkBO.getListBookmarks();
@@ -59,8 +59,9 @@ public class lesson06Controller {
 	}
 	
 	@ResponseBody
-	@GetMapping("/quiz02/check-url-duplicate")
-	public Map<String, Object> checkUrlDuplicate( @RequestParam("url") String url) {
+	@PostMapping("/check-url-duplicate")
+	public Map<String, Object> checkUrlDuplicate(
+			@RequestParam("url") String url) {
 		//DB Select
 		Boolean isDuplicate = bookmarkBO.checkUrlDuplicate(url);
 		
@@ -70,14 +71,21 @@ public class lesson06Controller {
 		return result;
 	}
 	
+	// http://localhost/lesson06/delete-bookmark?id=
 	@ResponseBody
-	@DeleteMapping("/quiz02/deleteBookmarkById")
-	public Map<String, Object> deleteBookmarkById(@RequestParam("id") int id) {
-		bookmarkBO.deleteBookmarkById(id);
+	@DeleteMapping("/delete-bookmark")
+	public Map<String, Object> deleteBookmarkById(
+			@RequestParam("id") int id) {
+		int rowCount = bookmarkBO.deleteBookmarkById(id);
 		
 		Map<String, Object> result = new HashMap<>();
-		result.put("code", 200);
-		result.put("result", "success");
+		if(rowCount > 0) {
+			result.put("code", 200);
+			result.put("result", "success");
+		} else {
+			result.put("code", 500);
+			result.put("error_message", "삭제할 항목이 존재하지 않습니다.");
+		}
 		return result; 
 	}
 	

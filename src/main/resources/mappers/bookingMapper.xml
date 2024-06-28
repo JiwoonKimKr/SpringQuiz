@@ -17,4 +17,45 @@
 		FROM
 			`booking`
 	</select>
+	<select id="selectBookingById" resultType="com.quiz.booking.domain.Booking">
+		SELECT
+			`id`
+			, `name`
+			, `headcount`
+			, `day`
+			, `date`
+			, `phoneNumber`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`booking`
+		WHERE
+			`id` = #{id}	
+	</select>
+	<select id="selectBookingByNamePhoneNumber" parameterType="map" resultType="com.quiz.booking.domain.Booking">
+		SELECT
+			`id`
+			, `name`
+			, `headcount`
+			, `day`
+			, `date`
+			, `phoneNumber`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`booking`
+		WHERE
+			`name` = #{name}
+		AND
+			`phoneNumber` = #{phoneNumber}
+	</select>
+	<delete id="deleteBookingById" parameterType="int">
+		DELETE
+		FROM
+			`booking`
+		WHERE
+			`id` = #{id}	
+	</delete>
 </mapper>

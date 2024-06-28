@@ -47,7 +47,7 @@
 		WHERE
 			`id` = #{id}
 	</delete>
-	<select id="isBookmarkDuplicateByUrl" parameterType="string" resultType="boolean">
+	<select id="isBookmarkDuplicateByUrl" parameterType="string">
 		SELECT
 			COUNT(*)
 		FROM

@@ -18,7 +18,7 @@
 			<article class="mt-2">
 				<div class="d-flex justify-content-between">
 					<div class="h2 py-3">즐겨 찾기 목록</div>
-					<a href="/lesson06/quiz01/add-bookmark-view" class="form-control col-4 btn btn-info my-auto">즐겨찾기 추가</a>
+					<a href="/lesson06/add-bookmark-view" class="form-control col-4 btn btn-info my-auto">즐겨찾기 추가</a>
 				</div>
 				<table class="table table-hover table-striped text-center">
 					<thead>
@@ -36,7 +36,16 @@
 								<a th:href="${bookmark.url}" th:text="${bookmark.url}" class="text-decoration-none"></a>
 							</td>
 							<td>
+								<!-- 
 								<button type="button" th:id="${bookmark.id}" class="btnDeleteBookmark form-control btn btn-danger w-50">삭제</button>
+								 -->
+								 
+								<!-- 1)value로 값 넣기 -->
+								<!-- <button type="button" th:value="${bookmark.id}" class="btnDeleteBookmark form-control btn btn-danger w-50">삭제</button> -->
+								
+								<!-- 2)data로 값 넣기; html에서 'data-소문자'형식으로 변수를 지정할 수 있다! -->
+								<button type="button" th:data-bookmark-id="${bookmark.id}" class="btnDeleteBookmark form-control btn btn-danger w-50">삭제</button>
+								
 							</td>
 						</tr>
 					</tbody>
@@ -48,26 +57,45 @@
 		$(document).ready(function(){
 			
 			//Clicked Delete Btn 
-			$(".btnDeleteBookmark").on('click', function(){
-				let idBookmarkforDelete = $(this).attr('id');
+			$(".btnDeleteBookmark").on('click', function(e){
+//1)Value로 하는 방법
+				//let id = $(".btnDeleteBookmark").val(); //1) 이렇게 value 가져오면 맨 처음 ID만 가져온다
+				//let id = $(this).val();
+				//let id = $(this).attr("value"); 이런 방식도 가능
+				
+					//function에 Argument로 e를 추가하는 방법;
+				//let id = e.target.value;
+				//console.log(id);
+				
+				//하지만 value로 설정하면 중복될 가능성이 있어서 이 방식은 피해야 한다.
+				
+//2)data로 가져오기
+//태그에 이름 짓기: data-bookmark-id				
+//스크립트에서 꺼내기: .date("bookmark-id") 라는 형식으로 꺼낼 수 있다.
+				let idBookmarkforDelete = $(this).data("bookmark-id");
 				console.log(idBookmarkforDelete);
 					
 				//Validation: DB SelectBookmarkById
 				$.ajax({
 					//Dictionary 형식으로 데이터가 주입된다.
 					//Request는 그래서 Key:Value 쌍 형태의 JSON으로 옮겨진다.
-					type:"DELETE"
-					, url: "/lesson06/quiz02/deleteBookmarkById"
+					type:"Delete"
+					, url: "/lesson06/delete-bookmark"
 					, data: {"id": idBookmarkforDelete}
 					, success:function(data){
-						if(data.result == "success"){
-							location.href= "/lesson06/quiz01/List-bookmarks-view"
-						} else if (data == "fail"){
-							alert("해당 댓글을 삭제하지 못하였습니다.")
+						if(data.code == 200){
+							//location.href= "/lesson06/List-bookmarks-view"
+								//이 location.href은 Get 메소드인 탓에 아예 Reload가 발생한다.
+								//그래서 스크롤이 꽤 아래에 있으면 다시 위쪽으로 올라가있는 불상사가 발생한다.
+							location.reload(true);
+						} else if (data.code == 500){
+							// 로직 상 실패
+							alert(data.error_message);
 						}
 					}
 					, error: function(xhr, status, error){
-						alert(`${xhr}, ${status}, ${error}`)
+						//alert(`${xhr}, ${status}, ${error}`)
+						alert('삭제 실패하였습니다.') //이쪽은 아예 서버 쪽 에러이다!
 					}
 				})
 			}); // 추가버튼 on(click)이벤트

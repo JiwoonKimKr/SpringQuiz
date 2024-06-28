@@ -17,7 +17,7 @@
 		<section class="contents">
 			<div class="d-flex justify-content-between">
 				<div class="h2 my-2 py-2">즐겨찾기 추가하기</div>
-				<a href="/lesson06/quiz01/List-bookmarks-view" class="form-control col-4 btn btn-primary my-auto">즐겨찾기 목록</a>
+				<a href="/lesson06/List-bookmarks-view" class="form-control col-4 btn btn-primary my-auto">즐겨찾기 목록</a>
 			</div>		
 			<form method="post" action="/lesson06/quiz01/add-bookmark">
 				<div class="form-group">
@@ -52,42 +52,46 @@
 				hasUrlDuplicateChecked = false;
 				
 				$("#url").removeClass("is-valid");
-				
 				$("#url").addClass("is-invalid");
 				
+				$("#feedbackUrlDuplicateCheck").removeClass("valid-feedback")
+				$("#feedbackUrlDuplicateCheck").addClass("invalid-feedback");				
 				$("#feedbackUrlDuplicateCheck").text("중복 확인 버튼을 눌러주세요.")
 			})
 			
 			$("#btnUrlDuplicateCheck").on('click', function(){
 				let url = $("#url").val().trim();
-				
 				$("#url").removeClass("is-valid")
-				
 				$("#url").removeClass("is-invalid")
-
 				if(!url){
 					alert("URL을 기재해주세요.");
 					return;
 				}
-
 				if(!url.startsWith("https") && !url.startsWith("http")){
 					alert("https 형식에 맞게 작성해주세요.");
 					return;
 				}				
-				
 				$.ajax({
-					type:"GET"
-					, url: "/lesson06/quiz02/check-url-duplicate"
+					type:"Post"
+					, url: "/lesson06/check-url-duplicate"
 					, data: {"url": url}
-					
 					// response
 					// callback 함수
 					, success:function(data){
 						hasUrlDuplicateChecked = true;
 						if(data.result == "success"){
+							$("#url").removeClass("is-invalid");
 							$("#url").addClass("is-valid");
+							
+							$("#feedbackUrlDuplicateCheck").removeClass("invalid-feedback")
+							$("#feedbackUrlDuplicateCheck").addClass("valid-feedback");
+							$("#feedbackUrlDuplicateCheck").text("저장가능한 URL입니다.")
 						} else{
+							$("#url").removeClass("is-valid");
 							$("#url").addClass("is-invalid");
+							
+							$("#feedbackUrlDuplicateCheck").removeClass("valid-feedback")
+							$("#feedbackUrlDuplicateCheck").addClass("invalid-feedback");
 							$("#feedbackUrlDuplicateCheck").text("중복된 URL입니다.")
 						}
 					}
@@ -127,7 +131,7 @@
 					
 				$.ajax({
 					type:"POST"
-					, url:"/lesson06/quiz01/add-bookmark"
+					, url:"/lesson06/add-bookmark"
 					, data:{"name":name, "url":url}
 					
 					// response
@@ -140,12 +144,13 @@
 							//Parsing까지 마무리 된 <Dictionary>로 나타내준다.
 						
 						if(data.result == "success"){
-							location.href= "/lesson06/quiz01/List-bookmarks-view"
+							location.href= "/lesson06/List-bookmarks-view";
 						}
 					}
 					, error:function(xhr, status, error){
 						//만약에 실패를 한다고 하면 사용자가 보기 좋게, alert에 안내문을 기재하는 것이 좋다.
-						alert(`${xhr}, ${status}, ${error}`)
+						//alert(error: `${xhr}, ${status}, ${error}`)
+						alert("중복 확인에 실패하였습니다.");
 					}
 				})			
 			}); //-- 추가 버튼 이벤트 끝
