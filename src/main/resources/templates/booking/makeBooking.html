@@ -78,11 +78,11 @@
                         alert("이름을 작성해 주십시오.")
                         return
                     }
-                    if(date == ""){
+                    if(date < 1 || date == ""){
                         alert("숙박 일자을 선택해 주십시오.")
                         return
                     }
-                    if(day == ""){
+                    if(day < 1 || day == ""){
                     	alert("숙박 인원을 작성해 주십시오.")
                         return
                     }
@@ -110,7 +110,14 @@
                			, success : function(data){
        						//{"code":200, "result" : "success"}
        						if(data.code == 200){
-       							alert(data.result)
+       							alert(data.result);
+       							
+       							$("#text_name").val('');
+       							$("#text_date").val('');
+       							$("#text_day").val('');
+       							$("#text_headcount").val('');
+       							$("#text_phoneNumber").val('');
+       							
        						} else if (data.code == 500){
        							alert(data.error_message)
        						}

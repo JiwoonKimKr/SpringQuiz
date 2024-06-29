@@ -33,19 +33,19 @@
 					</thead>
 					<tbody>
 						<tr th:each="booking: ${listBookings}">
-							<td th:text="${booking.name}"></td>
-							<td th:text="${#temporals.format(booking.date, 'yyyy년 MM월 dd일')}"></td>
-							<td th:text="${booking.day}"></td>
-							<td th:text="${booking.headcount}"></td>
-							<td th:text="${booking.phoneNumber}"></td>
-							<td>
+							<td th:text="${booking.name}" class="pt-3"></td>
+							<td th:text="${#temporals.format(booking.date, 'yyyy년 MM월 dd일')}" class="pt-3"></td>
+							<td th:text="${booking.day}" class="pt-3"></td>
+							<td th:text="${booking.headcount}" class="pt-3"></td>
+							<td th:text="${booking.phoneNumber}" class="pt-3"></td>
+							<td class="pt-3">
 								<th:block th:switch="${booking.state}">
 									<span th:case="대기중" class="text-info" th:text="${booking.state}"></span>
 									<span th:case="확정" class="text-success" th:text="${booking.state}"></span>
 									<span th:case="취소" class="text-danger" th:text="${booking.state}"></span>
 								</th:block>
 							</td>
-							<td>
+							<td class="pt-2">
 								<button class="btnDeleteBooking btn btn-danger" th:data-id-booking="${booking.id}">삭제</button>
 							</td>
 						</tr>

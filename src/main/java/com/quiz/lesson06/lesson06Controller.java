@@ -21,7 +21,7 @@ public class lesson06Controller {
 	@Autowired
 	private BookmarkBO bookmarkBO;
 
-	// localhost/lesson06/quiz01/add-bookmark-view
+	// localhost/lesson06/add-bookmark-view
 	@GetMapping("/add-bookmark-view")
 	public String addBookmarkView() {
 		return "lesson06/addBookmark";

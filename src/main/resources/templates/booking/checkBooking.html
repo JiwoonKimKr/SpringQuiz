@@ -102,7 +102,7 @@
 	                let nameGuest = $("#text_nameGuest").val().trim();
 	                let phoneNumber = $("#text_phoneNumber").val();
 	                if(nameGuest == ""){
-	                    alert("올바른 이름을 입력해 주세요.");
+	                    alert("이름을 입력해 주세요.");
 	                    return;
 	                }
 	                
@@ -128,9 +128,13 @@
 	     							+ "\n날짜: " + booking.date
 	     							+ "\n일수: " + booking.day
 	     							+ "\n인원: " + booking.headcount
-	     							+ "\n상태: " + booking.state )
+	     							+ "\n상태: " + booking.state );
+     							$("#text_nameGuest").val("");
+     							$("#text_phoneNumber").val("");
        						} else if (data.code == 500){
        							alert(data.error_message)
+     							$("#text_nameGuest").val("");
+     							$("#text_phoneNumber").val("");
        						}
                         }
        					, error: function(xhr, status, error){
