@@ -119,10 +119,11 @@
                		$.ajax({
                			type:"Post"
                			, url: "/booking/check-booking"
-               			, data:{ "name": nameGuest
+               			, data: JSON.stringify({ "name": nameGuest
                					, "phoneNumber": phoneNumber
-            			}
+            			})
                			, dataType : "json"
+               			, contentType: "application/json"
                			, success : function(data){
        						//{"code":200, "result" : "success"}
        						if(data.code == 200){

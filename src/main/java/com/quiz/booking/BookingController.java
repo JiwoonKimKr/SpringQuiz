@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,9 +48,8 @@ public class BookingController {
 	@ResponseBody
 	@PostMapping("/check-booking")
 	public Map<String, Object> getBookingByNamePhoneNumber(
-			@RequestParam("name") String name
-			, @RequestParam("phoneNumber") String phoneNumber){
-		Map<String, Object> mapBooking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
+			@RequestBody Map<String, String> data){
+		Map<String, Object> mapBooking = bookingBO.getBookingByNamePhoneNumber( data.get("name"), data.get("phoneNumber"));
 		
 		Map<String, Object> result = new HashMap<>();
 		
