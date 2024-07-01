@@ -90,11 +90,17 @@
                     	alert("숙박 인원을 작성해 주십시오.")
                         return
                     }
-                    let regex = /^(01[0-9]{1}-?[0-9]{4}-?[0-9]{4}|01[0-9]{8})$/
+                    let regex = /^(01[0-9]{1}-?[0-9]{4}-?[0-9]{4}|01[0-9]{9})$/;
                     if(regex.test(phoneNumber) == false){
                         alert("올바른 전화번호를 입력하여 주십시오.")
                         return
                     }
+                    let regexSerial = /^(01[0-9]{9})$/;
+                 	if(regexSerial.text(phoneNumber) == true){
+                 		console.log(phoneNumber);
+                 		phoneNumber = phoneNumber.slice(0,3).concat( '-', phoneNumber.slice(3,7), '-', phoneNumber.slice(7,11));
+                 		console.log(phoneNumber);
+                 	}
                     
                     console.log(`${name}, ${date}, ${day}, ${headcount}, ${phoneNumber}`);
                     
