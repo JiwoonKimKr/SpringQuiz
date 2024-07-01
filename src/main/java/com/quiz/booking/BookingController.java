@@ -48,12 +48,13 @@ public class BookingController {
 	@ResponseBody
 	@PostMapping("/check-booking")
 	public Map<String, Object> getBookingByNamePhoneNumber(
-			@RequestBody Map<String, String> data){
-		Map<String, Object> mapBooking = bookingBO.getBookingByNamePhoneNumber( data.get("name"), data.get("phoneNumber"));
+			@RequestBody Map<String, Object> data){
 		
+		String nameForCheck = (String) data.get("name");
+		String phoneNumberForCheck = (String) data.get("phoneNumber");
+		
+		Map<String, Object> mapBooking = bookingBO.getMapBookingNearestByNamePhoneNumber(nameForCheck, phoneNumberForCheck);
 		Map<String, Object> result = new HashMap<>();
-		
-		
 		if(mapBooking != null) {
 			result.put("code", 200);
 			result.put("result", mapBooking);

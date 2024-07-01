@@ -1,5 +1,6 @@
 package com.quiz.booking.bo;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,21 @@ public class BookingBO {
 		return bookingMapper.selectBookingById(id);
 	}
 
-	public Map<String, Object> getBookingByNamePhoneNumber(String name, String phoneNumber) {
+	public Map<String, Object> getMapBookingNearestByNamePhoneNumber(String name, String phoneNumber) {
+		
 		List<Booking> listBookings = bookingMapper.selectListBookingsByNamePhoneNumber(name, phoneNumber);
+		
+		Iterator<Booking> iter = listBookings.iterator(); //DB에서 받아온 리스트 중 오늘 이전 내용들은 삭제
+		while(iter.hasNext())  {
+			Booking booking = iter.next();
+			if(booking.getDate().isBefore(LocalDate.now())) {
+				iter.remove();
+			}
+		}
 		listBookings.sort(Comparator.comparing(Booking::getDate));
-		Booking booking = listBookings.get(0);
+		
+		Booking booking = listBookings.get(0); //예약 리스트 중 가장 최근 것만 Map에 담기 
+		
 		Map<String, Object> mapBooking = new HashMap<>();
 		mapBooking.put("name", booking.getName());
 		mapBooking.put("date", booking.getDate());
