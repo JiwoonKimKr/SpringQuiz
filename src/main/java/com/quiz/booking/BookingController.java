@@ -43,7 +43,7 @@ public class BookingController {
 		return "booking/checkBooking";
 	}
 	
-	///http://localhost/booking/get-bookmark
+	///http://localhost/booking/get-booking
 	@ResponseBody
 	@PostMapping("/get-booking")
 	public Map<String, Object> getBookingByNamePhoneNumber(
@@ -52,9 +52,19 @@ public class BookingController {
 		Booking booking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
 		
 		Map<String, Object> result = new HashMap<>();
+		
+		
 		if(booking != null) {
 			result.put("code", 200);
-			result.put("result", booking);
+			
+			Map<String, Object> mapBooking = new HashMap<>();
+			mapBooking.put("name", booking.getName());
+			mapBooking.put("date", booking.getDate());
+			mapBooking.put("day", booking.getDay());
+			mapBooking.put("headcount", booking.getHeadcount());
+			mapBooking.put("state", booking.getState());
+			
+			result.put("result", mapBooking);
 		} else {
 			result.put("code", 500);
 			result.put("error_message", "예약 내역이 존재하지 않습니다.");
@@ -91,8 +101,10 @@ public class BookingController {
 	@DeleteMapping("/delete-booking")
 	public Map<String, Object> deleteBooking(
 			@RequestParam("id")int id) {
+		//DB Delete
 		int rowCountDelete = bookingBO.deleteBookingById(id);
 		
+		//응답 값
 		Map<String, Object> result = new HashMap<>();
 		if(rowCountDelete > 0) {
 			result.put("code", 200);
@@ -100,6 +112,7 @@ public class BookingController {
 		} else {
 			result.put("code", 500);
 			result.put("error_message", "삭제할 항목이 존재하지 않습니다.");
+				//오타 주의: Key 명칭 아예 복사해서 붙여넣기
 		}
 		
 		return result;

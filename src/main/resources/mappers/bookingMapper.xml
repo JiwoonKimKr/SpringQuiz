@@ -50,6 +50,8 @@
 			`name` = #{name}
 		AND
 			`phoneNumber` = #{phoneNumber}
+		ORDER BY `date` DESC
+		LIMIT 1
 	</select>
 	<insert id="insertBooking" parameterType="map">
 		INSERT INTO

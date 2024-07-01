@@ -113,16 +113,14 @@
 	                }
 	                let regexSerial = /^(01[0-9]{9})$/;
                  	if(regexSerial.test(phoneNumber) == true){
-                 		console.log(phoneNumber);
                  		phoneNumber = "".concat(phoneNumber.slice(0,3), '-', phoneNumber.slice(3,7), '-', phoneNumber.slice(7,11));
-                 		console.log(phoneNumber);
                  	}
-	                console.log(`${nameGuest}, ${phoneNumber}`);
                         
                		$.ajax({
                			type:"Post"
                			, url: "/booking/get-booking"
-               			, data:{ "name": nameGuest, "phoneNumber": phoneNumber
+               			, data:{ "name": nameGuest
+               					, "phoneNumber": phoneNumber
             			}
                			, dataType : "json"
                			, success : function(data){
