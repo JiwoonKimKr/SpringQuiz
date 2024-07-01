@@ -96,7 +96,7 @@
                         return
                     }
                     let regexSerial = /^(01[0-9]{9})$/;
-                 	if(regexSerial.text(phoneNumber) == true){
+                 	if(regexSerial.test(phoneNumber) == true){
                  		console.log(phoneNumber);
                  		phoneNumber = phoneNumber.slice(0,3).concat( '-', phoneNumber.slice(3,7), '-', phoneNumber.slice(7,11));
                  		console.log(phoneNumber);
