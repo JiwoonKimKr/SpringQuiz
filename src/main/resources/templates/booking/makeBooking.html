@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<label for="text_date" class="font-weight-bold">예약날짜</label>
-						<input type="text" id="text_date" class="form-control form-control-sm col-7">
+						<input type="text" id="text_date" class="form-control form-control-sm">
 					</div>
 					<div class="form-group">
 						<label for="text_day" class="font-weight-bold">숙박일수</label>
@@ -78,10 +78,12 @@
                         alert("이름을 작성해 주십시오.")
                         return
                     }
+                    
                     if(date < 1 || date == ""){
                         alert("숙박 일자을 선택해 주십시오.")
                         return
                     }
+                    
                     if(day < 1 || day == ""){
                     	alert("숙박 인원을 작성해 주십시오.")
                         return

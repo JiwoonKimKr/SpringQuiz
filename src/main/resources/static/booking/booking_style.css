@@ -1,5 +1,11 @@
 a, a:hover {color:black}
 
+#titleHomeBooking:hover {
+	color: #555;
+	font-weight:lighter;
+	text-decoration: none;
+}
+
 header {height: 100px;}
 .menu {height: 40px}
 
