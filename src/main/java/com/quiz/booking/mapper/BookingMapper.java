@@ -16,7 +16,7 @@ public interface BookingMapper {
 
 	Booking selectBookingById(int id);
 
-	Booking selectBookingByNamePhoneNumber(
+	List<Booking> selectListBookingsByNamePhoneNumber(
 			@Param("name") String name
 			, @Param("phoneNumber") String phoneNumber);
 

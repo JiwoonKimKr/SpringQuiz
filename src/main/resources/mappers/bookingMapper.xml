@@ -33,7 +33,7 @@
 		WHERE
 			`id` = #{id}	
 	</select>
-	<select id="selectBookingByNamePhoneNumber" parameterType="map" resultType="com.quiz.booking.domain.Booking">
+	<select id="selectListBookingsByNamePhoneNumber" parameterType="map" resultType="com.quiz.booking.domain.Booking">
 		SELECT
 			`id`
 			, `name`
@@ -50,8 +50,6 @@
 			`name` = #{name}
 		AND
 			`phoneNumber` = #{phoneNumber}
-		ORDER BY `date` DESC
-		LIMIT 1
 	</select>
 	<insert id="insertBooking" parameterType="map">
 		INSERT INTO

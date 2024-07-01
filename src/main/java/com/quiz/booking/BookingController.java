@@ -43,27 +43,19 @@ public class BookingController {
 		return "booking/checkBooking";
 	}
 	
-	///http://localhost/booking/get-booking
+	///http://localhost/booking/check-booking
 	@ResponseBody
-	@PostMapping("/get-booking")
+	@PostMapping("/check-booking")
 	public Map<String, Object> getBookingByNamePhoneNumber(
 			@RequestParam("name") String name
 			, @RequestParam("phoneNumber") String phoneNumber){
-		Booking booking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
+		Map<String, Object> mapBooking = bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
 		
 		Map<String, Object> result = new HashMap<>();
 		
 		
-		if(booking != null) {
+		if(mapBooking != null) {
 			result.put("code", 200);
-			
-			Map<String, Object> mapBooking = new HashMap<>();
-			mapBooking.put("name", booking.getName());
-			mapBooking.put("date", booking.getDate());
-			mapBooking.put("day", booking.getDay());
-			mapBooking.put("headcount", booking.getHeadcount());
-			mapBooking.put("state", booking.getState());
-			
 			result.put("result", mapBooking);
 		} else {
 			result.put("code", 500);
